@@ -17,7 +17,7 @@ const Budget: React.FC = () => {
         <div className="flex-1 p-6">
           <div className="flex justify-between items-center mb-6">
             <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="text-lg font-medium mb-2">Total balance</h3>
+              <h3 className="text-lg font-medium mb-2">Баланс</h3>
               <p className="text-2xl font-bold">{balance.toFixed(2)} грн</p>
             </div>
           </div>
