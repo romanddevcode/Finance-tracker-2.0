@@ -12,11 +12,10 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     localStorage.getItem("token")
   );
 
-  // При появлении токена — синхронизируем старые данные
+  // При появлении токена — синхронизируем старые данные ПОКА ЧТО В ДОРАБОТКЕ
   useEffect(() => {
     if (token) {
       API.defaults.headers.common.Authorization = `Bearer ${token}`;
-      syncTransactions();
     } else {
       delete API.defaults.headers.common.Authorization;
       localStorage.removeItem("token");

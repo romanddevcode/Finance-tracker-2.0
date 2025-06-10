@@ -33,7 +33,6 @@ const GoalsPage: React.FC = () => {
 
   const handleAddGoal = async () => {
     if (!newGoal.title.trim() || newGoal.targetAmount <= 0) return;
-
     const goal = {
       id: Date.now().toString(),
       title: newGoal.title.trim(),
@@ -41,7 +40,6 @@ const GoalsPage: React.FC = () => {
       currentAmount: 0,
       progress: 0,
     };
-
     try {
       await addGoalMutation.mutateAsync(goal);
       setNewGoal({ title: "", targetAmount: 0 });
@@ -54,7 +52,6 @@ const GoalsPage: React.FC = () => {
     const goal = goals.find((g) => g.id === id);
     const amount = progressInputs[id] || 0;
     if (!goal || amount <= 0) return;
-
     try {
       await updateGoalMutation.mutateAsync({
         id,
@@ -75,11 +72,12 @@ const GoalsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-100 flex flex-col sm:flex-row">
       <Sidebar />
-      <div className="p-6 w-full max-w-4xl mx-auto">
+      <div className="p-4 w-full max-w-5xl mx-auto">
         <h1 className="text-2xl font-bold mb-6 text-purple-700">Цілі</h1>
 
+        {/* Блок создания новой цели */}
         <div className="bg-white p-4 rounded-lg shadow mb-6">
           <h2 className="text-xl font-semibold mb-4">Нова ціль</h2>
           <input
@@ -87,7 +85,7 @@ const GoalsPage: React.FC = () => {
             placeholder="Назва цілі"
             value={newGoal.title}
             onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
-            className="w-full mb-2 p-2 border rounded"
+            className="w-full mb-2 p-2 border rounded text-sm"
           />
           <input
             type="number"
@@ -99,22 +97,23 @@ const GoalsPage: React.FC = () => {
                 targetAmount: parseFloat(e.target.value) || 0,
               })
             }
-            className="w-full mb-2 p-2 border rounded"
+            className="w-full mb-2 p-2 border rounded text-sm"
           />
           <button
             onClick={handleAddGoal}
-            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800 disabled:opacity-50"
+            className="w-full sm:w-auto bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800 disabled:opacity-50"
           >
-            "Додати ціль"
+            Додати ціль
           </button>
         </div>
 
+        {/* Цели */}
         {isLoading ? (
           <p className="text-gray-500">Завантаження...</p>
         ) : goals.length === 0 ? (
           <p className="text-gray-500">Цілі відсутні</p>
         ) : (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {goals.map((goal) => {
               const data = {
                 labels: [goal.title],
@@ -127,31 +126,39 @@ const GoalsPage: React.FC = () => {
                   {
                     label: "Ціль",
                     data: [goal.targetAmount],
-                    backgroundColor: "#ddd",
+                    backgroundColor: "#e5e7eb",
                   },
                 ],
               };
 
               return (
-                <div key={goal.id} className="bg-white p-4 rounded shadow">
+                <div
+                  key={goal.id}
+                  className="bg-white p-4 rounded shadow w-full overflow-x-auto"
+                >
                   <h3 className="text-lg font-semibold mb-2">{goal.title}</h3>
-                  <p className="mb-2">
+                  <p className="mb-2 text-sm text-gray-600">
                     Прогрес: {goal.currentAmount} / {goal.targetAmount} грн
                   </p>
-                  <Bar
-                    data={data}
-                    options={{
-                      responsive: true,
-                      plugins: { legend: { position: "bottom" } },
-                      scales: {
-                        y: { beginAtZero: true, max: goal.targetAmount },
-                      },
-                    }}
-                  />
-                  <div className="mt-4 flex items-center gap-2">
+                  <div className="min-w-[300px] sm:min-w-0 h-[250px]">
+                    <Bar
+                      data={data}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                          legend: { position: "bottom" },
+                        },
+                        scales: {
+                          y: { beginAtZero: true, max: goal.targetAmount },
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
                     <input
                       type="number"
-                      className="border rounded p-2 w-32"
+                      className="border rounded p-2 w-full sm:w-32 text-sm"
                       placeholder="Сума"
                       value={progressInputs[String(goal.id)] || ""}
                       onChange={(e) =>
@@ -163,15 +170,15 @@ const GoalsPage: React.FC = () => {
                     />
                     <button
                       onClick={() => handleAddProgress(String(goal.id))}
-                      className="mt-3 text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 disabled:opacity-50"
+                      className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 text-sm w-full sm:w-auto"
                     >
-                      + Додати прогрес цілі
+                      + Додати прогрес
                     </button>
                     <button
                       onClick={() => handleDeleteGoal(String(goal.id))}
-                      className="mt-3 text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 disabled:opacity-50"
+                      className="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600 text-sm w-full sm:w-auto"
                     >
-                      Видалити ціль
+                      Видалити
                     </button>
                   </div>
                 </div>

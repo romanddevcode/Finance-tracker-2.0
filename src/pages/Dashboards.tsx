@@ -1,48 +1,36 @@
-// Обновлённый компонент Dashboard с учётом последних изменений (React Query, типизация и расчёты)
-
 import React from "react";
 import Sidebar from "../features/transactions/components/sidebar";
 import TransactionList from "../features/transactions/components/BalanceList";
+import MoneyFlow from "../features/transactions/components/GraphsComponents/MoneyFlow";
 import { AuthField } from "../features/transactions/components/AuthField";
+import BudgetGraph from "../features/transactions/components/GraphsComponents/BudgetGraph";
+import RecentTransactionGraph from "../features/transactions/components/GraphsComponents/RecentTransactionGraph";
+import GoalsGraphs from "../features/transactions/components/GraphsComponents/GoalsGraphs";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
+    <div className="sm:pl-24 min-h-screen bg-gray-100 dark:bg-gray-900 flex relative">
       {/* Sidebar */}
+      <AuthField />
       <Sidebar />
 
-      {/* Main Content */}
+      {/* Main Content with AuthField */}
       <div className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <button className="text-blue-500 mr-4">&lt;</button>
             <span className="text-xl font-semibold">Welcome back, user!</span>
           </div>
-          <AuthField />
         </div>
 
         <TransactionList />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="text-lg font-medium mb-2">Money flow</h3>
-            <p className="text-gray-500">graphs</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="text-lg font-medium mb-2">Budget</h3>
-            <p className="text-gray-500">graphs</p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols- gap-6 mb-6">
+          <MoneyFlow />
+          <BudgetGraph />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="text-lg font-medium mb-2">Recent transactions</h3>
-            <p className="text-gray-500">graphs</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="text-lg font-medium mb-2">Goals</h3>
-            <p className="text-gray-500">graphs</p>
-          </div>
+          <RecentTransactionGraph />
         </div>
       </div>
     </div>

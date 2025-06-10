@@ -1,4 +1,3 @@
-// src/features/budget/hooks/useBudgetLimit.ts
 import { useState, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -20,7 +19,7 @@ export const useBudgetLimit = (totalExpense: number) => {
       const localLimit = await getBudgetLimitLocal();
       const localState = await getLimitStateLocal();
 
-      if (token) {
+      if (token && navigator.onLine) {
         try {
           const res = await API.get("/api/budgetsettings");
           console.log("Budget settings from server:", res.data);
@@ -61,7 +60,7 @@ export const useBudgetLimit = (totalExpense: number) => {
     await setBudgetLimitLocal(newLimit);
 
     // можно сюда добавить POST на сервер
-    if (token) {
+    if (token && navigator.onLine) {
       try {
         await API.post("/api/budgetsettings", {
           limit: newLimit,
@@ -80,7 +79,7 @@ export const useBudgetLimit = (totalExpense: number) => {
 
     await setLimitStateLocal(newState);
 
-    if (token) {
+    if (token && navigator.onLine) {
       try {
         await API.post("/api/budgetsettings", {
           limit,

@@ -7,9 +7,9 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="px-4 py-2 bg-gray-300 dark:bg-gray-800 text-black dark:text-white rounded"
+      className="px-2 py-2 bg-purple-500 dark:bg-purple-700  rounded"
     >
-      {theme === "light" ? "🌙 Тёмная тема" : "☀️ Светлая тема"}
+      {theme === "light" ? "☀️ " : "🌙"}
     </button>
   );
 };

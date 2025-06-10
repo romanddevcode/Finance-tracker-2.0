@@ -1,4 +1,3 @@
-// src/features/goals/hooks/useGoalMutations.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import API from "../services/api/axios";
 import {
@@ -17,8 +16,9 @@ export const useAddGoal = () => {
     mutationFn: async (goal: Goal) => {
       if (token) {
         await API.post("/api/goals", goal);
+      } else {
+        await addLocalGoal(goal);
       }
-      await addLocalGoal(goal);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["goals"] });
@@ -34,8 +34,9 @@ export const useUpdateGoal = () => {
     mutationFn: async ({ id, data }: { id: string; data: Partial<Goal> }) => {
       if (token) {
         await API.patch(`/api/goals/${id}`, data);
+      } else {
+        await updateLocalGoal(id, data);
       }
-      await updateLocalGoal(id, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["goals"] });
@@ -51,8 +52,9 @@ export const useDeleteGoal = () => {
     mutationFn: async (id: string) => {
       if (token) {
         await API.delete(`/api/goals/${id}`);
+      } else {
+        await deleteLocalGoal(id);
       }
-      await deleteLocalGoal(id);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["goals"] });

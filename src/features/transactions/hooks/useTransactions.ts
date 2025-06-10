@@ -1,4 +1,3 @@
-// src/features/transactions/hooks/useTransactions.ts
 import { useQuery } from "@tanstack/react-query";
 import { getLocalTransactions } from "../services/localTransactionsService";
 import { useAuth } from "../auth/AuthContext";
@@ -8,26 +7,18 @@ export const useTransactions = () => {
   const { token } = useAuth();
 
   return useQuery({
-    queryKey: ["transactions"],
+    queryKey: token ? ["transactions", "server"] : ["transactions", "local"],
     queryFn: async () => {
-      const local = await getLocalTransactions();
-
-      if (token) {
-        try {
-          const res = await API.get("/api/transactions");
-          console.log("Data got from server: ", res.data);
-          return res.data;
-        } catch (error) {
-          console.warn("Error getting data from server: ", error);
-        }
+      if (token && navigator.onLine) {
+        const res = await API.get("/api/transactions");
+        console.log("TRANSACTIONS from server:", res.data);
+        return res.data;
       } else {
         console.log("No token, using local data(Dexie)");
-        return local;
+        return await getLocalTransactions();
       }
-      // аноним или офлайн
     },
-    refetchOnReconnect: !!token,
-    refetchInterval: token ? 5000 : false,
+
     enabled: token !== undefined,
   });
 };

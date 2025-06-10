@@ -13,14 +13,20 @@ export const useAddTransaction = () => {
 
   return useMutation({
     mutationFn: async (transaction: Transaction) => {
-      if (token) {
+      if (token && navigator.onLine) {
+        console.log("Added transaction to server: ", transaction);
         return await API.post("/api/transactions", transaction);
       } else {
+        console.log("Added to Dexie LOCAL: ", transaction);
         return await addLocalTransaction(transaction);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["transactions"] });
+      queryClient.invalidateQueries({
+        queryKey: token
+          ? ["transactions", "server"]
+          : ["transactions", "local"],
+      });
     },
   });
 };
@@ -31,14 +37,20 @@ export const useDeleteTransaction = () => {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      if (token) {
+      if (token && navigator.onLine) {
+        console.log("Deleted transaction from server: ", id);
         return await API.delete(`/api/transactions/${id}`);
       } else {
+        console.log("Deleted from Dexie LOCAL: ", id);
         return await deleteLocalTransaction(id);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["transactions"] });
+      queryClient.invalidateQueries({
+        queryKey: token
+          ? ["transactions", "server"]
+          : ["transactions", "local"],
+      });
     },
   });
 };

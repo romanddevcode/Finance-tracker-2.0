@@ -10,9 +10,7 @@ export const useGoals = () => {
   return useQuery<Goal[]>({
     queryKey: ["goals"],
     queryFn: async () => {
-      const local = await getLocalGoals();
-
-      if (!token) return local;
+      if (!token && !navigator.onLine) return await getLocalGoals();
 
       try {
         const res = await API.get("/api/goals");
@@ -26,11 +24,10 @@ export const useGoals = () => {
         }));
       } catch (error) {
         console.warn("Error loading goals from server. Using Dexie:", error);
-        return local;
+        return await getLocalGoals();
       }
     },
-    refetchOnReconnect: !!token,
-    refetchInterval: token ? 10000 : false,
+    enabled: token !== undefined,
     initialData: [],
   });
 };

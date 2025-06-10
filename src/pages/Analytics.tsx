@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,8 @@ import {
 import { useTransactions } from "../features/transactions/hooks/useTransactions";
 import Sidebar from "../features/transactions/components/sidebar";
 import { useAnalyticsData } from "../features/transactions/hooks/useAnalyticsData";
+import IncomeGraph from "../features/transactions/components/AnlyticsComp/IncomeGraph";
+import ExpenseGraph from "../features/transactions/components/AnlyticsComp/ExpenseGraph";
 
 ChartJS.register(
   CategoryScale,
@@ -34,7 +35,7 @@ const Analytics: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="py-6 pl-4 w-full max-w-4xl mx-auto sm:mx-40">
         <div className="flex justify-end mb-4">
           <select
             value={period}
@@ -49,28 +50,8 @@ const Analytics: React.FC = () => {
           </select>
         </div>
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-4">Доходи по датам</h2>
-            <Bar data={incomeByDateChart} />
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-4">
-              Витрати по датам та категоріям
-            </h2>
-            <Bar
-              data={expenseByDateStacked}
-              options={{
-                responsive: true,
-                plugins: {
-                  legend: { position: "bottom" },
-                },
-                scales: {
-                  x: { stacked: true },
-                  y: { stacked: true },
-                },
-              }}
-            />
-          </div>
+          <IncomeGraph name="Дохід по датам" data={incomeByDateChart} />
+          <ExpenseGraph data={expenseByDateStacked} />
         </div>
       </div>
     </div>

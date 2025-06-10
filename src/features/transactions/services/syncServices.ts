@@ -1,4 +1,3 @@
-// src/features/transactions/services/syncServices.ts
 import { db } from "../../../db/db";
 import API from "../services/api/axios";
 
@@ -9,11 +8,12 @@ export const syncTransactions = async () => {
     try {
       const res = await API.post("/api/transactions", tx);
       if (res.status === 201 || res.status === 200) {
-        await db.transactions.update(tx.id!, { isSynced: 1 });
+        // удаляем после успешной отправки
+        await db.transactions.delete(tx.id!);
       }
     } catch (err) {
-      console.error("Sync error", err);
-      // если не удаётся — оставляем флаг false
+      console.error(" Sync error", err);
     }
   }
 };
+//Временно отключен на доработку
