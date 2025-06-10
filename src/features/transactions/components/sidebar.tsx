@@ -35,7 +35,8 @@ const Sidebar: React.FC = () => {
           <SidebarLink
             to="/"
             icon="🏠"
-            label="Панель управления"
+            label="
+приборна панель"
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
