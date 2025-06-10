@@ -35,31 +35,31 @@ const Sidebar: React.FC = () => {
           <SidebarLink
             to="/"
             icon="🏠"
-            label="Dashboard"
+            label="Панель управления"
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/transactions"
             icon="📄"
-            label="Transactions"
+            label="Транзакції"
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/budget"
             icon="💰"
-            label="Budget"
+            label="Бюджет"
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/analytics"
             icon="📈"
-            label="Analytics"
+            label="Аналітика"
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/goals"
             icon="🎯"
-            label="Goals"
+            label="Цілі"
             isOpen={isOpen || isHovered}
           />
         </div>
