@@ -9,27 +9,26 @@ import GoalsGraphs from "../features/transactions/components/GraphsComponents/Go
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="sm:pl-24 min-h-screen bg-gray-100 dark:bg-gray-900 flex relative">
+    <div className="min-h-screen bg-gray-100 flex flex-col sm:flex-row relative">
       {/* Sidebar */}
       <AuthField />
       <Sidebar />
 
       {/* Main Content with AuthField */}
-      <div className="flex-1 p-6">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <span className="text-xl font-semibold">Welcome back, user!</span>
-          </div>
+      <div className="py-6 px-4 sm:px-0 w-full  mx-auto md:mx-40">
+        <div className="flex justify-center sm:justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold mb-6 text-purple-700">
+            Головна сторінка
+          </h1>
         </div>
-
         <TransactionList />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols- gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols- gap-6 mb-6">
           <MoneyFlow />
           <BudgetGraph />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
           <RecentTransactionGraph />
         </div>
       </div>

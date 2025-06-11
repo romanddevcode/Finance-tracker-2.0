@@ -33,10 +33,11 @@ const Analytics: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-100 flex flex-col  sm:flex-row">
       <Sidebar />
-      <div className="py-6 pl-4 w-full max-w-4xl mx-auto sm:mx-40">
-        <div className="flex justify-end mb-4">
+      <div className="py-6 pl-0 sm:pl-4 w-full  mx-auto sm:mx-40">
+        <div className="flex justify-around sm:justify-between mb-4">
+          <h1 className="text-2xl font-bold mb-6 text-purple-700">Аналітика</h1>
           <select
             value={period}
             onChange={(e) =>
@@ -49,7 +50,7 @@ const Analytics: React.FC = () => {
             <option value="year">Рік</option>
           </select>
         </div>
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="px-4 sm:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <IncomeGraph name="Дохід по датам" data={incomeByDateChart} />
           <ExpenseGraph data={expenseByDateStacked} />
         </div>

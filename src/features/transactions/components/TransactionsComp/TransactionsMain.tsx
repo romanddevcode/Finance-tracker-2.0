@@ -56,7 +56,9 @@ export const TransactionsMain: React.FC = () => {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6 text-purple-700">Транзакції</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-purple-700">
+        Транзакції
+      </h1>
 
       {/* Форма */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-6">
