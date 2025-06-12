@@ -59,7 +59,6 @@ export const useBudgetLimit = (totalExpense: number) => {
     // локальное обновление
     await setBudgetLimitLocal(newLimit);
 
-    // можно сюда добавить POST на сервер
     if (token && navigator.onLine) {
       try {
         await API.post("/api/budgetsettings", {

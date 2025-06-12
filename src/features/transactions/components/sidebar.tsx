@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-purple-100 p-4 flex flex-col justify-between transition-all duration-300 z-50
+        className={`fixed top-0 left-0 h-full bg-purple-100 p-4 flex flex-col justify-between transition-all duration-300 z-0
         ${sidebarWidth} ${isOpen ? "block" : "hidden"} md:block`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
