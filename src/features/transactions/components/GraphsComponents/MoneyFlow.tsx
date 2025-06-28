@@ -9,7 +9,7 @@ export const MoneyFlow: React.FC = () => {
 
   const { incomeByDateChart } = useAnalyticsData(transactions, period);
   return (
-    <div className="bg-white p-4 rounded-lg shadow">
+    <div className="bg-secondary p-4 rounded-lg shadow">
       <IncomeGraph name="Дохід  по датам" data={incomeByDateChart} />
     </div>
   );

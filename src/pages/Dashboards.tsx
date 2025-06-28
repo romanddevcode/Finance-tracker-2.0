@@ -9,7 +9,7 @@ import GoalsGraphs from "../features/transactions/components/GraphsComponents/Go
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col sm:flex-row relative">
+    <div className="min-h-screen bg-bgBase flex flex-col sm:flex-row relative transition">
       {/* Sidebar */}
       <AuthField />
       <Sidebar />
@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
       {/* Main Content with AuthField */}
       <div className="py-6 px-4 sm:px-0 w-full  mx-auto md:mx-40">
         <div className="flex justify-center sm:justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold mb-6 text-purple-700">
+          <h1 className="text-2xl font-bold mb-6 text-primary">
             Головна сторінка
           </h1>
         </div>

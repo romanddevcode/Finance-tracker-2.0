@@ -17,7 +17,7 @@ const Sidebar: React.FC = () => {
       <div className="md:hidden p-2">
         <button
           onClick={toggleSidebar}
-          className="text-purple-600 focus:outline-none"
+          className="text-primary focus:outline-none"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-purple-100 p-4 flex flex-col justify-between transition-all duration-300 z-0
+        className={`fixed top-0 left-0 h-full bg-sidebar p-4 flex flex-col justify-between transition-all duration-300 z-0
         ${sidebarWidth} ${isOpen ? "block" : "hidden"} md:block`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -64,7 +64,9 @@ const Sidebar: React.FC = () => {
           />
         </div>
 
-        <div></div>
+        <div>
+          <ThemeToggle />
+        </div>
       </div>
     </>
   );
@@ -86,7 +88,7 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
   return (
     <Link
       to={to}
-      className="flex items-center space-x-2 p-2 rounded hover:bg-purple-700 hover:text-white transition"
+      className="flex items-center space-x-2 p-2 rounded hover:bg-primary hover:text-textBaseHoverSidebar text-textBase transition"
     >
       <span className="text-xl">{icon}</span>
       {isOpen && <span className="text-sm font-medium">{label}</span>}

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useThemeStore } from "./store/uiStore.ts";
+import { useThemeStore } from "./store/themeStore.ts";
 
 import "./index.css";
 
@@ -17,14 +17,14 @@ import { AuthProvider } from "./features/transactions/auth/AuthContext.tsx";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const { theme } = useThemeStore();
+  const { themeController } = useThemeStore();
 
   useEffect(() => {
     const root = document.documentElement;
-    theme === "dark"
+    themeController === "dark"
       ? root.classList.add("dark")
       : root.classList.remove("dark");
-  }, [theme]);
+  }, [themeController]);
 
   return (
     <BrowserRouter>

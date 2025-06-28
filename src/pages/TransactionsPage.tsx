@@ -6,7 +6,7 @@ import TransactionsMain from "../features/transactions/components/TransactionsCo
 
 const TransactionsPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col sm:flex-row">
+    <div className="min-h-screen bg-bgBase flex flex-col sm:flex-row transition">
       <Sidebar />
       <div className="py-6 px-4 sm:px-0 w-full mx-auto sm:mx-40">
         {/* Главная */}

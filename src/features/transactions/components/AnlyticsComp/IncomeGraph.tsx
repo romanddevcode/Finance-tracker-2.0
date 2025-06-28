@@ -8,7 +8,7 @@ type IncomeGraphProps = {
 
 export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow w-full max-w-full ">
+    <div className="bg-secondary text-textBase p-4 rounded-lg shadow w-full max-w-full ">
       <h2 className="text-lg font-semibold mb-4">{name}</h2>
       <div className="w-full sm:min-w-0">
         <Bar

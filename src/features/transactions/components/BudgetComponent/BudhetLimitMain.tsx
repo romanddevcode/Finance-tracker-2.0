@@ -15,7 +15,7 @@ export const BudgetLimitMain: React.FC = () => {
   } = useBudgetLimit(totalExpense);
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow mb-6">
+    <div className="bg-secondary text-textBase p-4 rounded-lg shadow mb-6">
       <h3 className="text-lg font-medium mb-4">Ліміт витрат</h3>
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">

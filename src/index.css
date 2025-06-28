@@ -1,3 +1,20 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-bgBase: #e6e6e6;
+  --color-textBase: #1b1c1f;
+  --color-textBaseHoverSidebar: #ffffff;
+  --color-secondary: #ffffff;
+  --color-primary: oklch(62.7% 0.265 303.9);
+  --color-income: #05df72;
+  --color-expense: #fb2c36;
+  --color-sidebar: #f3e8ff;
+}
+
+.dark {
+  --color-bgBase: #1b1c1f;
+  --color-secondary: #555555;
+  --color-textBaseHoverSidebar: #1b1c1f;
+  --color-textBase: #ffffff;
+  --color-sidebar: #555555;
+}

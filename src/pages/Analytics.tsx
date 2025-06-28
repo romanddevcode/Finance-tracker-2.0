@@ -33,17 +33,17 @@ const Analytics: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col  sm:flex-row">
+    <div className="min-h-screen bg-bgBase flex flex-col  sm:flex-row transition">
       <Sidebar />
       <div className="py-6 pl-0 sm:pl-4 w-full  mx-auto sm:mx-40">
         <div className="flex justify-around sm:justify-between mb-4">
-          <h1 className="text-2xl font-bold mb-6 text-purple-700">Аналітика</h1>
+          <h1 className="text-2xl font-bold mb-6 text-primary">Аналітика</h1>
           <select
             value={period}
             onChange={(e) =>
               setPeriod(e.target.value as "week" | "month" | "year")
             }
-            className="border p-2 rounded"
+            className="border p-2 rounded bg-secondary text-textBase"
           >
             <option value="week">Тиждень</option>
             <option value="month">Місяць</option>

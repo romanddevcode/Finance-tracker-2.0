@@ -7,7 +7,7 @@ type ExpenseGraphProps = {
 
 export const ExpenseGraph = ({ data }: ExpenseGraphProps) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow w-full max-w-full">
+    <div className="bg-secondary text-textBase p-4 rounded-lg shadow w-full max-w-full">
       <h2 className="text-lg font-semibold mb-4">
         Витрати по датам та категоріям
       </h2>

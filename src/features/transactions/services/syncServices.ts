@@ -1,5 +1,5 @@
 import { db } from "../../../db/db";
-import API from "../services/api/axios";
+import API from "./api/axios";
 
 export const syncTransactions = async () => {
   const unsynced = await db.transactions.where("isSynced").equals(0).toArray();

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Transaction } from "../../transactions/types/transactionInterface";
+import type { Transaction } from "../types/transactionInterface";
 import type { ChartData, ChartDataset } from "chart.js";
 
 type Period = "week" | "month" | "year";

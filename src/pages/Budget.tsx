@@ -11,14 +11,14 @@ const Budget: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col sm:flex-row">
+    <div className="min-h-screen bg-bgBase flex flex-col sm:flex-row transition">
       <Sidebar />
       <div className="py-6 px-4 sm:px-0 w-full  mx-auto sm:mx-40">
-        <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-purple-700">
+        <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
           Бюджет
         </h1>
         <div className="items-center mb-6">
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
             <h3 className="text-lg font-medium mb-2">Баланс</h3>
             <p className="text-2xl font-bold">{balance.toFixed(2)} грн</p>
           </div>
@@ -26,9 +26,9 @@ const Budget: React.FC = () => {
 
         <BudgetLimitMain />
 
-        <div className="bg-white p-4 rounded-lg shadow">
+        <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-2">Всього витрат:</h3>
-          <p className="text-xl font-bold text-red-500">
+          <p className="text-xl font-bold text-expense">
             {totalExpense.toFixed(2)} грн
           </p>
         </div>

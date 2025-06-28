@@ -4,7 +4,7 @@ import {
   addLocalTransaction,
   deleteLocalTransaction,
 } from "../services/localTransactionsService";
-import type { Transaction } from "./../types/transactionInterface";
+import type { Transaction } from "../types/transactionInterface";
 import { useAuth } from "../auth/AuthContext";
 
 export const useAddTransaction = () => {

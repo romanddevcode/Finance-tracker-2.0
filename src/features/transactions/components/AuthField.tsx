@@ -47,7 +47,7 @@ export const AuthField = () => {
       <div className="absolute top-4 right-4 z-50">
         <button
           onClick={() => setShowForm(true)}
-          className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition"
+          className="bg-primary text-white px-4 py-2 rounded hover:bg-purple-600 transition"
         >
           Увійти
         </button>
@@ -60,7 +60,7 @@ export const AuthField = () => {
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-40">
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-sm relative"
+        className="bg-bgBase p-6 rounded-lg shadow-md w-full max-w-sm relative"
       >
         <button
           type="button"
@@ -70,7 +70,7 @@ export const AuthField = () => {
           ✕
         </button>
 
-        <h2 className="text-xl font-bold mb-4 text-center">
+        <h2 className="text-xl font-bold mb-4 text-center text-textBase">
           {isLogin ? "Вхід" : "Реєстрація"}
         </h2>
 
@@ -83,7 +83,7 @@ export const AuthField = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 p-2 border rounded text-textBase"
           required
         />
 
@@ -92,13 +92,13 @@ export const AuthField = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Пароль"
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 p-2 border rounded text-textBase"
           required
         />
 
         <button
           type="submit"
-          className="w-full bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600"
+          className="w-full bg-primary text-textBase py-2 px-4 rounded hover:bg-purple-600"
         >
           {isLogin ? "Увійти" : "Зареєструватися"}
         </button>
@@ -106,7 +106,7 @@ export const AuthField = () => {
         <button
           type="button"
           onClick={() => setIsLogin((prev) => !prev)}
-          className="w-full mt-2 text-sm text-purple-600 hover:underline"
+          className="w-full mt-2 text-sm text-primary hover:underline"
         >
           {isLogin ? "Немає акаунту? Реєстрація" : "Уже є акаунт? Вхід"}
         </button>
