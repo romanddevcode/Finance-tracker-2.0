@@ -1,15 +1,5 @@
 import React, { useState } from "react";
 import Sidebar from "../features/transactions/components/sidebar";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
 
 import { useGoals } from "../features/transactions/hooks/useGoals";
 import {
@@ -17,8 +7,6 @@ import {
   useUpdateGoal,
   useDeleteGoal,
 } from "../features/transactions/hooks/useGoalMutations";
-
-Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const GoalsPage: React.FC = () => {
   const { data: goals = [], isLoading } = useGoals();
@@ -150,7 +138,7 @@ const GoalsPage: React.FC = () => {
                         Прогрес: {goal.currentAmount} / {goal.targetAmount} грн
                       </p>
                       <div className="min-h-[150px] min-w-[150px] lg:min-h-[300px]">
-                        <Bar
+                        {/* <Bar
                           data={data}
                           options={{
                             responsive: true,
@@ -162,7 +150,7 @@ const GoalsPage: React.FC = () => {
                               y: { beginAtZero: true, max: goal.targetAmount },
                             },
                           }}
-                        />
+                        /> */}
                       </div>
                       <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
                         <input

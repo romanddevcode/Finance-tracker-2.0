@@ -1,8 +1,17 @@
 import { useMemo } from "react";
 import type { Transaction } from "../types/transactionInterface";
-import type { ChartData, ChartDataset } from "chart.js";
 
 type Period = "week" | "month" | "year";
+
+interface RechartsIncomeEntry {
+  name: string;
+  income: number;
+}
+
+interface RechartsExpenseEntry {
+  name: string;
+  [category: string]: number | string;
+}
 
 export const useAnalyticsData = (
   transactions: Transaction[],
@@ -62,34 +71,26 @@ export const useAnalyticsData = (
       new Set(Object.keys(expenseByDateAndCategory))
     ).sort();
 
-    const incomeByDateChart: ChartData<"bar", number[], string> = {
-      labels: Object.keys(incomeByDate),
-      datasets: [
-        {
-          label: "Доходи",
-          data: Object.values(incomeByDate),
-          backgroundColor: "rgba(75, 192, 192, 0.6)",
-        },
-      ],
-    };
+    const incomeByDateData: RechartsIncomeEntry[] = Object.entries(
+      incomeByDate
+    ).map(([date, amount]) => ({
+      name: date,
+      income: amount,
+    }));
 
-    const expenseByDateStacked: ChartData<"bar", number[], string> = {
-      labels: allDates,
-      datasets: allCategories.map(
-        (category, i): ChartDataset<"bar", number[]> => ({
-          label: category,
-          data: allDates.map((date) => {
-            const dateEntry = expenseByDateAndCategory[date] || {};
-            return dateEntry[category] ?? 0;
-          }),
-          backgroundColor: `hsl(${(i * 50) % 360}, 70%, 60%)`,
-        })
-      ),
-    };
+    const expenseByDateStackedData: RechartsExpenseEntry[] = allDates.map(
+      (date) => {
+        const entry: RechartsExpenseEntry = { name: date };
+        allCategories.forEach((category) => {
+          entry[category] = expenseByDateAndCategory[date]?.[category] || 0;
+        });
+        return entry;
+      }
+    );
 
     return {
-      incomeByDateChart,
-      expenseByDateStacked,
+      incomeByDateData,
+      expenseByDateStackedData,
       allDates,
       allCategories,
     };

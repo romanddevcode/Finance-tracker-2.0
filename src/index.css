@@ -18,3 +18,11 @@
   --color-textBase: #ffffff;
   --color-sidebar: #555555;
 }
+
+@layer base {
+  svg:focus,
+  g:focus,
+  rect:focus {
+    outline: none !important;
+  }
+}

@@ -1,50 +1,46 @@
-import type { ChartData } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
-type IncomeGraphProps = {
-  data: ChartData<"bar", number[], string>;
+interface IncomeGraphProps {
+  data: { name: string; income: number }[];
   name: string;
-};
+}
 
 export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
+  console.log("IncomeGraph data: ", data);
   return (
-    <div className="bg-secondary text-textBase p-4 rounded-lg shadow w-full max-w-full ">
+    <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
       <h2 className="text-lg font-semibold mb-4">{name}</h2>
-      <div className="w-full sm:min-w-0">
-        <Bar
-          data={data}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                labels: {
-                  font: {
-                    size: 12, // Меньше шрифт на мобилках
-                  },
-                },
-              },
-            },
-            scales: {
-              x: {
-                ticks: {
-                  font: {
-                    size: 11,
-                  },
-                },
-              },
-              y: {
-                ticks: {
-                  font: {
-                    size: 11,
-                  },
-                },
-              },
-            },
-          }}
-          height={300} // Высота вручную — удобнее на мобилках
-        />
-      </div>
+      <ResponsiveContainer width="100%" height={400}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" stroke="var(--color-textBase)" />
+          <YAxis stroke="var(--color-textBase)" />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "var(--color-bgBase)",
+              border: "none",
+              borderRadius: "8px",
+            }}
+            labelStyle={{ color: "var(--color-textBase)" }}
+          />
+          <Legend />
+          <Bar
+            name="Дохід"
+            dataKey="income"
+            fill="var(--color-income)"
+            radius={[4, 4, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

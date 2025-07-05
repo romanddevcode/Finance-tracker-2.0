@@ -1,36 +1,16 @@
 import React, { useState } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
 import { useTransactions } from "../features/transactions/hooks/useTransactions";
 import Sidebar from "../features/transactions/components/sidebar";
 import { useAnalyticsData } from "../features/transactions/hooks/useAnalyticsData";
 import IncomeGraph from "../features/transactions/components/AnlyticsComp/IncomeGraph";
 import ExpenseGraph from "../features/transactions/components/AnlyticsComp/ExpenseGraph";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Tooltip,
-  Legend
-);
-
 const Analytics: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
   const [period, setPeriod] = useState<"week" | "month" | "year">("month");
 
-  const { incomeByDateChart, expenseByDateStacked } = useAnalyticsData(
-    transactions,
-    period
-  );
+  const { incomeByDateData, expenseByDateStackedData, allCategories } =
+    useAnalyticsData(transactions, period);
 
   return (
     <div className="min-h-screen bg-bgBase flex flex-col  sm:flex-row transition">
@@ -51,8 +31,12 @@ const Analytics: React.FC = () => {
           </select>
         </div>
         <div className="px-4 sm:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <IncomeGraph name="Дохід по датам" data={incomeByDateChart} />
-          <ExpenseGraph data={expenseByDateStacked} />
+          <IncomeGraph name="Дохід по датам" data={incomeByDateData} />
+          <ExpenseGraph
+            name="Витрати по датам та категоріям"
+            data={expenseByDateStackedData}
+            categories={allCategories}
+          />
         </div>
       </div>
     </div>

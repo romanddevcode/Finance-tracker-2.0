@@ -1,6 +1,5 @@
 // components/GoalCard.tsx
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
 
 type Goal = {
   id: string;
@@ -50,13 +49,13 @@ const GoalCard: React.FC<GoalCardProps> = ({
       <p className="mb-2">
         Прогрес: {goal.currentAmount} / {goal.targetAmount} грн
       </p>
-      <Bar
+      {/* <Bar
         data={data}
         options={{
           responsive: true,
           plugins: { legend: { position: "bottom" } },
         }}
-      />
+      /> */}
       <div className="mt-4 flex items-center gap-2 flex-wrap">
         <input
           type="number"
