@@ -1,54 +1,50 @@
-import type { ChartData } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
-type ExpenseGraphProps = {
-  data: ChartData<"bar", number[], string>;
-};
+interface ExpenseGraphProps {
+  data: any[];
+  name: string;
+  categories: string[];
+}
 
-export const ExpenseGraph = ({ data }: ExpenseGraphProps) => {
+export const ExpenseGraph = ({ data, name, categories }: ExpenseGraphProps) => {
+  console.log("ExpenseGraph data : ", data);
   return (
-    <div className="bg-secondary text-textBase p-4 rounded-lg shadow w-full max-w-full">
-      <h2 className="text-lg font-semibold mb-4">
-        Витрати по датам та категоріям
-      </h2>
-      <div className="w-full sm:min-w-0">
-        <Bar
-          data={data}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: "bottom",
-                labels: {
-                  font: {
-                    size: 12,
-                  },
-                },
-              },
-            },
-            scales: {
-              x: {
-                stacked: true,
-                ticks: {
-                  font: {
-                    size: 11,
-                  },
-                },
-              },
-              y: {
-                stacked: true,
-                ticks: {
-                  font: {
-                    size: 11,
-                  },
-                },
-              },
-            },
-          }}
-          height={300}
-        />
-      </div>
+    <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
+      <h2 className="text-lg font-semibold mb-4">{name}</h2>
+      <ResponsiveContainer width="100%" height={400}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" stroke="var(--color-textBase)" />
+          <YAxis stroke="var(--color-textBase)" />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "var(--color-bgBase)",
+              border: "none",
+              borderRadius: "8px",
+            }}
+            labelStyle={{ color: "var(--color-textBase)" }}
+          />
+          <Legend />
+          {categories.map((category, i) => (
+            <Bar
+              key={category}
+              name={category}
+              dataKey={category}
+              fill={`hsl(${(i * 50) % 360}, 70%, 60%)`}
+              stackId="category"
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
