@@ -9,6 +9,7 @@
   --color-income: #28c76f; /* мягкий зелёный */
   --color-expense: #ea5455; /* яркий, но не кислотный красный */
   --color-sidebar: #ece7f6; /* светлый фиолетово-серый */
+  --color-goalBar: oklch(62.7% 0.265 303.9);
 }
 
 .dark {
@@ -20,4 +21,13 @@
   --color-income: #28c76f;
   --color-expense: #ea5455;
   --color-sidebar: #29253d; /* sidebar в тоне secondary */
+  --color-goalBar: oklch(72.7% 0.265 303.9);
+}
+
+@layer base {
+  svg:focus,
+  g:focus,
+  rect:focus {
+    outline: none !important;
+  }
 }
