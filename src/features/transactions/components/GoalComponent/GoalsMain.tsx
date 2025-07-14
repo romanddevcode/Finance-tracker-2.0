@@ -1,0 +1,60 @@
+import React, { useState } from "react";
+import { useAddGoal } from "../../../../features/transactions/hooks/useGoalMutations";
+
+const GoalsMain: React.FC = () => {
+  const addGoalMutation = useAddGoal();
+
+  const [newGoal, setNewGoal] = useState({ title: "", targetAmount: 0 });
+
+  const handleAddGoal = async () => {
+    if (!newGoal.title.trim() || newGoal.targetAmount <= 0) return;
+    const goal = {
+      id: Date.now().toString(),
+      title: newGoal.title.trim(),
+      targetAmount: newGoal.targetAmount,
+      currentAmount: 0,
+      progress: 0,
+    };
+    try {
+      await addGoalMutation.mutateAsync(goal);
+      setNewGoal({ title: "", targetAmount: 0 });
+    } catch (error) {
+      console.error("Error adding goal:", error);
+    }
+  };
+
+  return (
+    <div>
+      <h2 className="text-xl font-semibold mb-4">Нова ціль</h2>
+      <div className="bg-secondary p-4 rounded-lg shadow mb-6">
+        <input
+          type="text"
+          placeholder="Назва цілі"
+          value={newGoal.title}
+          onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
+          className="w-full mb-2 p-2 border rounded text-sm"
+        />
+        <input
+          type="number"
+          placeholder="Сума"
+          value={newGoal.targetAmount || ""}
+          onChange={(e) =>
+            setNewGoal({
+              ...newGoal,
+              targetAmount: parseFloat(e.target.value) || 0,
+            })
+          }
+          className="w-full mb-2 p-2 border rounded text-sm"
+        />
+        <button
+          onClick={handleAddGoal}
+          className="w-full sm:w-auto bg-primary text-white px-4 py-2 rounded hover:bg-purple-800 disabled:opacity-50"
+        >
+          Додати ціль
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default GoalsMain;
