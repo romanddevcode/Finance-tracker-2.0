@@ -5,7 +5,6 @@ import MoneyFlow from "../features/transactions/components/GraphsComponents/Mone
 import { AuthField } from "../features/transactions/components/AuthField";
 import BudgetGraph from "../features/transactions/components/GraphsComponents/BudgetGraph";
 import RecentTransactionGraph from "../features/transactions/components/GraphsComponents/RecentTransactionGraph";
-import GoalsGraphs from "../features/transactions/components/GraphsComponents/GoalsGraphs";
 
 const Dashboard: React.FC = () => {
   return (

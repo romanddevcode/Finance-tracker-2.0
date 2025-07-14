@@ -9,6 +9,7 @@
   --color-income: #05df72;
   --color-expense: #fb2c36;
   --color-sidebar: #f3e8ff;
+  --color-goalBar: oklch(62.7% 0.265 303.9);
 }
 
 .dark {
@@ -17,6 +18,7 @@
   --color-textBaseHoverSidebar: #1b1c1f;
   --color-textBase: #ffffff;
   --color-sidebar: #555555;
+  --color-goalBar: oklch(72.7% 0.265 303.9);
 }
 
 @layer base {
