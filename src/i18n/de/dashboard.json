@@ -1,3 +1,8 @@
 {
-  "welcome_user": "Willkommen, "
+  "main_title": "Hauptseite",
+  "sidebar_panel_1": "Dashboard",
+  "sidebar_panel_2": "Transactionen",
+  "sidebar_panel_3": "Budget",
+  "sidebar_panel_4": "Analitics",
+  "sidebar_panel_5": "Ziele"
 }

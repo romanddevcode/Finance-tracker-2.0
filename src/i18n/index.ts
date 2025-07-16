@@ -29,7 +29,8 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    ns: ["analytics", "dashboard", "budget", "goals", "transactions"], // какие namespaces мы хотим
+    // ns: ["analytics", "dashboard", "budget", "goals", "transactions"], // какие namespaces мы хотим
+    ns: ["dashboard"], // какие namespaces мы хотим
     defaultNS: "analytics",
     resources: {
       en: {

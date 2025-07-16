@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { Menu, X } from "lucide-react"; // иконки для бургера
+import { useTranslation } from "react-i18next";
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // для бургера на мобилках
   const [isHovered, setIsHovered] = useState(false); // для ховера на десктопе
+  const { t } = useTranslation("dashboard");
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -35,31 +37,31 @@ const Sidebar: React.FC = () => {
           <SidebarLink
             to="/"
             icon="🏠"
-            label="Приборна панель"
+            label={t("sidebar_panel_1")}
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/transactions"
             icon="📄"
-            label="Транзакції"
+            label={t("sidebar_panel_2")}
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/budget"
             icon="💰"
-            label="Бюджет"
+            label={t("sidebar_panel_3")}
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/analytics"
             icon="📈"
-            label="Аналітика"
+            label={t("sidebar_panel_4")}
             isOpen={isOpen || isHovered}
           />
           <SidebarLink
             to="/goals"
             icon="🎯"
-            label="Цілі"
+            label={t("sidebar_panel_5")}
             isOpen={isOpen || isHovered}
           />
         </div>

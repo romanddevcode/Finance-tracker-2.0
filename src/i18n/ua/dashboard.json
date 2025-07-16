@@ -1,3 +1,8 @@
 {
-  "welcome_user": "З поверненням, "
+  "main_title": "Головна сторінка",
+  "sidebar_panel_1": "Панель навігації",
+  "sidebar_panel_2": "Транзакції",
+  "sidebar_panel_3": "Бюджет",
+  "sidebar_panel_4": "Аналітика",
+  "sidebar_panel_5": "Цілі"
 }
