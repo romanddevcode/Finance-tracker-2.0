@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useAddTransaction } from "../../hooks/useTransactionsMutation";
 import type { Transaction } from "../../types/transactionInterface";
+import { useTranslation } from "react-i18next";
 
 export const TransactionsMain: React.FC = () => {
   const addTransactionMutation = useAddTransaction();
+
+  const { t } = useTranslation("transactions");
 
   const [formData, setFormData] = useState<Transaction>({
     id: "",
@@ -57,27 +60,33 @@ export const TransactionsMain: React.FC = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
-        Транзакції
+        {t("main_title")}
       </h1>
 
       {/* Форма */}
       <div className="bg-secondary text-textBase p-6 rounded-lg shadow-md mb-6">
-        <h2 className="text-xl font-semibold mb-4">Додати нову транзакцію</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          {t("new_transaction_add")}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium  mb-1">Сума:</label>
+            <label className="block text-sm font-medium  mb-1">
+              {t("summ")}
+            </label>
             <input
               type="number"
               name="amount"
               value={formData.amount || ""}
               onChange={handleChange}
               className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
-              placeholder="Введіть суму"
+              placeholder={t("summ_placeholder")}
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium  mb-1">Тип:</label>
+            <label className="block text-sm font-medium  mb-1">
+              {t("type")}
+            </label>
             <select
               name="type"
               value={formData.type}
@@ -85,16 +94,16 @@ export const TransactionsMain: React.FC = () => {
               className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
             >
               <option value="expense" className="bg-secondary">
-                Витрата
+                {t("transaction_type_expense")}
               </option>
               <option value="income" className="bg-secondary">
-                Дохід
+                {t("transaction_type_income")}
               </option>
             </select>
           </div>
           <div>
             <label className="block text-sm font-medium  mb-1">
-              Категорія:
+              {t("category")}
             </label>
             <select
               name="category"
@@ -103,21 +112,23 @@ export const TransactionsMain: React.FC = () => {
               className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
             >
               <option value="Продукти" className="bg-secondary">
-                Продукти
+                {t("category_type_products")}
               </option>
               <option value="Транспорт" className="bg-secondary">
-                Транспорт
+                {t("category_type_transport")}
               </option>
               <option value="Розваги" className="bg-secondary">
-                Розваги
+                {t("category_type_fun")}
               </option>
               <option value="Інше" className="bg-secondary">
-                Інше
+                {t("category_type_other")}
               </option>
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium  mb-1">Дата:</label>
+            <label className="block text-sm font-medium  mb-1">
+              {t("date")}
+            </label>
             <input
               type="date"
               name="date"
@@ -127,13 +138,15 @@ export const TransactionsMain: React.FC = () => {
             />
           </div>
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium  mb-1">Опис:</label>
+            <label className="block text-sm font-medium  mb-1">
+              {t("description")}
+            </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
-              placeholder="Додайте опис (опціонально)"
+              placeholder={t("description_placeholder")}
               rows={3}
             />
           </div>
@@ -142,7 +155,7 @@ export const TransactionsMain: React.FC = () => {
           onClick={handleSubmit}
           className="mt-4 w-full bg-primary text-white py-2 px-4 rounded hover:bg-purple-700 transition"
         >
-          Додати транзакцію
+          {t("new_transaction_add")}
         </button>
       </div>
     </div>

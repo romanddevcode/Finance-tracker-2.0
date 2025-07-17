@@ -4,10 +4,13 @@ import Sidebar from "../features/transactions/components/sidebar";
 import { useAnalyticsData } from "../features/transactions/hooks/useAnalyticsData";
 import IncomeGraph from "../features/transactions/components/AnlyticsComp/IncomeGraph";
 import ExpenseGraph from "../features/transactions/components/AnlyticsComp/ExpenseGraph";
+import { useTranslation } from "react-i18next";
 
 const Analytics: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
   const [period, setPeriod] = useState<"week" | "month" | "year">("month");
+
+  const { t } = useTranslation("analytics");
 
   const { incomeByDateData, expenseByDateStackedData, allCategories } =
     useAnalyticsData(transactions, period);
@@ -17,7 +20,9 @@ const Analytics: React.FC = () => {
       <Sidebar />
       <div className="py-6 pl-0 sm:pl-4 w-full  mx-auto sm:mx-40">
         <div className="flex justify-around sm:justify-between mb-4">
-          <h1 className="text-2xl font-bold mb-6 text-primary">Аналітика</h1>
+          <h1 className="text-2xl font-bold mb-6 text-primary">
+            {t("main_title")}
+          </h1>
           <select
             value={period}
             onChange={(e) =>

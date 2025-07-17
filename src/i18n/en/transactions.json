@@ -1,3 +1,25 @@
 {
-  "main_title": "Hauptseite, "
+  "main_title": "Transactions",
+  "new_transaction_add": "Add transaction",
+  "summ": "Summ:",
+  "summ_placeholder": "Enter summ",
+  "category": "Category:",
+  "date": "Date:",
+  "type": "Type:",
+  "description": "Description:",
+  "description_placeholder": "Add description (optional)",
+  "transaction_type_expense": "Expense",
+  "transaction_type_income": "Income",
+  "category_type_products": "Products",
+  "category_type_transport": "Transport",
+  "category_type_fun": "Fun",
+  "category_type_other": "Other",
+  "list_of_transactions": "Transactions list",
+  "current_balance": "Current balance:",
+  "summ_in_list": "Summ",
+  "category_in_list": "Category",
+  "date_in_list": "Date",
+  "type_in_list": "Type",
+  "description_in_list": "Description",
+  "action_in_list": "Action"
 }
