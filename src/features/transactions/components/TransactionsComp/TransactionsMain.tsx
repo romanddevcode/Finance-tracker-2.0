@@ -12,7 +12,7 @@ export const TransactionsMain: React.FC = () => {
     id: "",
     amount: 0,
     type: "expense",
-    category: "Продукти",
+    category: "Products",
     date: new Date().toISOString().slice(0, 10),
     description: "",
     isSynced: 0,
@@ -39,7 +39,7 @@ export const TransactionsMain: React.FC = () => {
     setFormData({
       amount: 0,
       type: "expense",
-      category: "Продукти",
+      category: "Products",
       date: new Date().toISOString().slice(0, 10),
       description: "",
       isSynced: 0,
@@ -111,16 +111,16 @@ export const TransactionsMain: React.FC = () => {
               onChange={handleChange}
               className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
             >
-              <option value="Продукти" className="bg-secondary">
+              <option value="Products" className="bg-secondary">
                 {t("category_type_products")}
               </option>
-              <option value="Транспорт" className="bg-secondary">
+              <option value="Transport" className="bg-secondary">
                 {t("category_type_transport")}
               </option>
-              <option value="Розваги" className="bg-secondary">
+              <option value="Fun" className="bg-secondary">
                 {t("category_type_fun")}
               </option>
-              <option value="Інше" className="bg-secondary">
+              <option value="Other" className="bg-secondary">
                 {t("category_type_other")}
               </option>
             </select>

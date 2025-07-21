@@ -30,15 +30,15 @@ const Analytics: React.FC = () => {
             }
             className="border p-2 rounded bg-secondary text-textBase"
           >
-            <option value="week">Тиждень</option>
-            <option value="month">Місяць</option>
-            <option value="year">Рік</option>
+            <option value="week">{t("week")}</option>
+            <option value="month">{t("month")}</option>
+            <option value="year">{t("year")}</option>
           </select>
         </div>
         <div className="px-4 sm:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <IncomeGraph name="Дохід по датам" data={incomeByDateData} />
+          <IncomeGraph name={t("income_by_date")} data={incomeByDateData} />
           <ExpenseGraph
-            name="Витрати по датам та категоріям"
+            name={t("expenses_by_date_and_category")}
             data={expenseByDateStackedData}
             categories={allCategories}
           />

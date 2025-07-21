@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   BarChart,
   Bar,
@@ -17,6 +18,10 @@ interface ExpenseGraphProps {
 
 export const ExpenseGraph = ({ data, name, categories }: ExpenseGraphProps) => {
   console.log("ExpenseGraph data : ", data);
+  console.log("ExpenseGraph categories: ", categories);
+
+  const { t } = useTranslation("analytics");
+
   return (
     <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
       <h2 className="text-lg font-semibold mb-4">{name}</h2>
@@ -37,7 +42,7 @@ export const ExpenseGraph = ({ data, name, categories }: ExpenseGraphProps) => {
           {categories.map((category, i) => (
             <Bar
               key={category}
-              name={category}
+              name={t(`categories.${category}`)}
               dataKey={category}
               fill={`hsl(${(i * 50) % 360}, 70%, 60%)`}
               stackId="category"

@@ -1,3 +1,9 @@
 {
-  "main_title": "Hauptseite, "
+  "main_title": "Бюджет",
+  "balance": "Баланс",
+  "limit": "Ліміт витрат",
+  "liimit_placeholder": "Введіть ліміт витрат",
+  "enable_limit": "Увімкнути ліміт витрат",
+  "limit_warning": "Попередження! Ви перевищили ліміт витрат",
+  "all_expenses": "Всі витрати:"
 }

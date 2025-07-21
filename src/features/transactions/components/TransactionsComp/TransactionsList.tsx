@@ -8,7 +8,8 @@ export const TransactionsList: React.FC = () => {
   const { data: transactions = [], isLoading } = useTransactions();
   const { balance } = getTransactionsStats(transactions);
 
-  const { t } = useTranslation("transactions");
+  const { t: tTransactions } = useTranslation("transactions");
+  const { t: tAnalytics } = useTranslation("analytics");
 
   const deleteTransactionMutation = useDeleteTransaction();
 
@@ -19,10 +20,10 @@ export const TransactionsList: React.FC = () => {
   return (
     <div className="bg-secondary text-textBase p-4 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">
-        {t("list_of_transactions")}
+        {tTransactions("list_of_transactions")}
       </h2>
       <p className="text-lg mb-4">
-        {t("current_balance")} {balance.toFixed(2)} грн
+        {tTransactions("current_balance")} {balance.toFixed(2)} грн
       </p>
 
       {isLoading ? (
@@ -33,12 +34,12 @@ export const TransactionsList: React.FC = () => {
         <div className="space-y-3 max-h-[400px] overflow-y-auto">
           {/* Table Header для desktop */}
           <div className="hidden sm:grid grid-cols-6 gap-4  p-2 rounded font-medium text-sm text-textBase">
-            <span>{t("type_in_list")}</span>
-            <span>{t("summ_in_list")}</span>
-            <span>{t("category_in_list")}</span>
-            <span>{t("date_in_list")}</span>
-            <span>{t("description_in_list")}</span>
-            <span>{t("action_in_list")}</span>
+            <span>{tTransactions("type_in_list")}</span>
+            <span>{tTransactions("summ_in_list")}</span>
+            <span>{tTransactions("category_in_list")}</span>
+            <span>{tTransactions("date_in_list")}</span>
+            <span>{tTransactions("description_in_list")}</span>
+            <span>{tTransactions("action_in_list")}</span>
           </div>
 
           {/* Transactions */}
@@ -50,7 +51,9 @@ export const TransactionsList: React.FC = () => {
               {/* Desktop: просто текст */}
               {/* Mobile: Лейбл + значення */}
               <div>
-                <span className="sm:hidden">{t("type_in_list")}</span>
+                <span className="sm:hidden">
+                  {tTransactions("type_in_list")}
+                </span>
                 <span
                   className={`font-semibold ${
                     tx.type === "income" ? "text-income" : "text-expense"
@@ -61,7 +64,9 @@ export const TransactionsList: React.FC = () => {
               </div>
 
               <div>
-                <span className="sm:hidden">{t("summ_in_list")}</span>
+                <span className="sm:hidden">
+                  {tTransactions("summ_in_list")}
+                </span>
                 <span
                   className={`${
                     tx.type === "income" ? "text-income" : "text-expense"
@@ -72,22 +77,30 @@ export const TransactionsList: React.FC = () => {
               </div>
 
               <div>
-                <span className="sm:hidden">{t("category_in_list")}</span>
-                {tx.category}
+                <span className="sm:hidden">
+                  {tTransactions("category_in_list")}
+                </span>
+                {tAnalytics(`categories.${tx.category}`)}
               </div>
 
               <div>
-                <span className="sm:hidden">{t("date_in_list")}</span>
+                <span className="sm:hidden">
+                  {tTransactions("date_in_list")}
+                </span>
                 {tx.date}
               </div>
 
               <div className="break-words">
-                <span className="sm:hidden">{t("description_in_list")}</span>
+                <span className="sm:hidden">
+                  {tTransactions("description_in_list")}
+                </span>
                 {tx.description || "-"}
               </div>
 
               <div>
-                <span className="sm:hidden">{t("action_in_list")}</span>
+                <span className="sm:hidden">
+                  {tTransactions("action_in_list")}
+                </span>
                 <button
                   onClick={() => handleDelete(tx.id!)}
                   className="text-red-500 hover:text-red-700 transition"

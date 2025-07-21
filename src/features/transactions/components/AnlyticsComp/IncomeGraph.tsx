@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   BarChart,
   Bar,
@@ -16,6 +17,7 @@ interface IncomeGraphProps {
 
 export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
   console.log("IncomeGraph data: ", data);
+  const { t } = useTranslation("analytics");
   return (
     <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
       <h2 className="text-lg font-semibold mb-4">{name}</h2>
@@ -34,7 +36,7 @@ export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
           />
           <Legend />
           <Bar
-            name="Дохід"
+            name={t("income")}
             dataKey="income"
             fill="var(--color-income)"
             radius={[4, 4, 0, 0]}

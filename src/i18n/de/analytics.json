@@ -1,3 +1,15 @@
 {
-  "main_title": "Analitics"
+  "main_title": "Analitik",
+  "income_by_date": "Einnahmen per Datum",
+  "expenses_by_date_and_category": "Ausgaben per Datum und Kategorie",
+  "week": "Woche",
+  "month": "Monate",
+  "year": "Jahr",
+  "income": "Einnahmen",
+  "categories": {
+    "Products": "Produkte",
+    "Transport": "Transport",
+    "Fun": "Freizeit",
+    "Other": "Sonstiges"
+  }
 }
