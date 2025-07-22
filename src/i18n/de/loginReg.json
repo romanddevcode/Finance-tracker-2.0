@@ -1,0 +1,11 @@
+{
+  "button_login": "Login",
+  "button_logout": "Logout",
+  "title_register": "Anmeldung",
+  "title_login": "Login",
+  "button_register": "Anmeldung",
+  "email_placeholder": "Email",
+  "password_placeholder": "Passwort",
+  "register_question": "Keinen Account? Login",
+  "login_question": "Haben Sie bereits ein Account? Login"
+}

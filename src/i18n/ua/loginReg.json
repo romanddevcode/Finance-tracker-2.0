@@ -1,0 +1,11 @@
+{
+  "button_login": "Увійти",
+  "button_logout": "Вийти",
+  "title_register": "Реєстрація",
+  "title_login": "Вхід",
+  "button_register": "Зареєструватися",
+  "email_placeholder": "Email",
+  "password_placeholder": "Пароль",
+  "register_question": "Вже маєте аккаунт? Вхід",
+  "login_question": "Немає аккаунту? Реєстрація"
+}
