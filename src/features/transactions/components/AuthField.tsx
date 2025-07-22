@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useAuth } from "../auth/AuthContext";
+import { useTranslation } from "react-i18next";
 
 export const AuthField = () => {
   const { login, register, logout, token } = useAuth(); // добавляем token для проверки
@@ -8,6 +9,8 @@ export const AuthField = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false); // управление формой
+
+  const { t } = useTranslation("loginReg");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,7 +38,7 @@ export const AuthField = () => {
           onClick={logout}
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
         >
-          Вийти
+          {t("button_logout")}
         </button>
       </div>
     );
@@ -49,7 +52,7 @@ export const AuthField = () => {
           onClick={() => setShowForm(true)}
           className="bg-primary text-white px-4 py-2 rounded hover:bg-purple-600 transition"
         >
-          Увійти
+          {t("button_login")}
         </button>
       </div>
     );
@@ -71,7 +74,7 @@ export const AuthField = () => {
         </button>
 
         <h2 className="text-xl font-bold mb-4 text-center text-textBase">
-          {isLogin ? "Вхід" : "Реєстрація"}
+          {isLogin ? `${t("title_login")}` : `${t("title_register")}`}
         </h2>
 
         {error && (
@@ -82,7 +85,7 @@ export const AuthField = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder={t("email_placeholder")}
           className="w-full mb-3 p-2 border rounded text-textBase"
           required
         />
@@ -91,7 +94,7 @@ export const AuthField = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Пароль"
+          placeholder={t("password_placeholder")}
           className="w-full mb-3 p-2 border rounded text-textBase"
           required
         />
@@ -100,7 +103,7 @@ export const AuthField = () => {
           type="submit"
           className="w-full bg-primary text-textBase py-2 px-4 rounded hover:bg-purple-600"
         >
-          {isLogin ? "Увійти" : "Зареєструватися"}
+          {isLogin ? `${t("button_login")}` : `${t("button_register")}`}
         </button>
 
         <button
@@ -108,7 +111,7 @@ export const AuthField = () => {
           onClick={() => setIsLogin((prev) => !prev)}
           className="w-full mt-2 text-sm text-primary hover:underline"
         >
-          {isLogin ? "Немає акаунту? Реєстрація" : "Уже є акаунт? Вхід"}
+          {isLogin ? `${t("login_question")}` : `${t("register_question")}`}
         </button>
       </form>
     </div>

@@ -4,5 +4,8 @@
   "sidebar_panel_2": "Транзакції",
   "sidebar_panel_3": "Бюджет",
   "sidebar_panel_4": "Аналітика",
-  "sidebar_panel_5": "Цілі"
+  "sidebar_panel_5": "Цілі",
+  "balance_panel": "Баланс",
+  "income_panel": "Дохід",
+  "expense_panel": "Витрати"
 }
