@@ -21,5 +21,8 @@
   "date_in_list": "Дата",
   "type_in_list": "Тип",
   "description_in_list": "Опис",
-  "action_in_list": "Дія"
+  "action_in_list": "Дія",
+  "action_delete": "Видалити",
+  "type_in_list_expense": "Витрати",
+  "type_in_list_income": "Дохід"
 }

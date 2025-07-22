@@ -59,7 +59,9 @@ export const TransactionsList: React.FC = () => {
                     tx.type === "income" ? "text-income" : "text-expense"
                   }`}
                 >
-                  {tx.type === "income" ? "Дохід" : "Витрата"}
+                  {tx.type === "income"
+                    ? `${tTransactions("transaction_type_income")}`
+                    : `${tTransactions("transaction_type_expense")}`}
                 </span>
               </div>
 
@@ -105,7 +107,7 @@ export const TransactionsList: React.FC = () => {
                   onClick={() => handleDelete(tx.id!)}
                   className="text-red-500 hover:text-red-700 transition"
                 >
-                  Видалити
+                  {tTransactions("action_delete")}
                 </button>
               </div>
             </div>

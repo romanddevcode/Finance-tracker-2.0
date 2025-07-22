@@ -21,5 +21,8 @@
   "date_in_list": "Date",
   "type_in_list": "Type",
   "description_in_list": "Description",
-  "action_in_list": "Action"
+  "action_in_list": "Action",
+  "action_delete": "Delete",
+  "type_in_list_expense": "Expense",
+  "type_in_list_income": "Income"
 }

@@ -5,6 +5,7 @@ import {
   useDeleteGoal,
 } from "../../../../features/transactions/hooks/useGoalMutations";
 import GoalGraph from "./GoalGraph";
+import { useTranslation } from "react-i18next";
 
 const GoalsList: React.FC = () => {
   const { data: goals = [], isLoading } = useGoals();
@@ -38,6 +39,8 @@ const GoalsList: React.FC = () => {
     }
   };
 
+  const { t } = useTranslation("goals");
+
   return (
     <>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -48,7 +51,7 @@ const GoalsList: React.FC = () => {
           >
             <h3 className="text-lg font-semibold mb-2">{goal.title}</h3>
             <p className="mb-2 text-sm">
-              Прогрес: {goal.currentAmount} / {goal.targetAmount} грн
+              {t("progress")} {goal.currentAmount} / {goal.targetAmount} грн
             </p>
             <GoalGraph
               data={[
@@ -64,7 +67,7 @@ const GoalsList: React.FC = () => {
               <input
                 type="number"
                 className="border rounded p-2 w-full sm:w-32 text-sm"
-                placeholder="Сума"
+                placeholder={t("goal_amount")}
                 value={progressInputs[String(goal.id)] || ""}
                 onChange={(e) =>
                   setProgressInputs((prev) => ({
@@ -77,13 +80,13 @@ const GoalsList: React.FC = () => {
                 onClick={() => handleAddProgress(String(goal.id))}
                 className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 text-sm w-full sm:w-auto"
               >
-                + Додати прогрес
+                {t("add_progress")}
               </button>
               <button
                 onClick={() => handleDeleteGoal(String(goal.id))}
                 className="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600 text-sm w-full sm:w-auto"
               >
-                Видалити
+                {t("delete_goal")}
               </button>
             </div>
           </div>

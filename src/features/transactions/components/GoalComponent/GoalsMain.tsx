@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useAddGoal } from "../../../../features/transactions/hooks/useGoalMutations";
+import { useTranslation } from "react-i18next";
 
 const GoalsMain: React.FC = () => {
   const addGoalMutation = useAddGoal();
 
   const [newGoal, setNewGoal] = useState({ title: "", targetAmount: 0 });
+
+  const { t } = useTranslation("goals");
 
   const handleAddGoal = async () => {
     if (!newGoal.title.trim() || newGoal.targetAmount <= 0) return;
@@ -25,18 +28,18 @@ const GoalsMain: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Нова ціль</h2>
+      <h2 className="text-xl font-semibold mb-4">{t("new_goal")}</h2>
       <div className="bg-secondary p-4 rounded-lg shadow mb-6">
         <input
           type="text"
-          placeholder="Назва цілі"
+          placeholder={t("goal_name")}
           value={newGoal.title}
           onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
           className="w-full mb-2 p-2 border rounded text-sm"
         />
         <input
           type="number"
-          placeholder="Сума"
+          placeholder={t("goal_amount")}
           value={newGoal.targetAmount || ""}
           onChange={(e) =>
             setNewGoal({
@@ -50,7 +53,7 @@ const GoalsMain: React.FC = () => {
           onClick={handleAddGoal}
           className="w-full sm:w-auto bg-primary text-white px-4 py-2 rounded hover:bg-purple-800 disabled:opacity-50"
         >
-          Додати ціль
+          {t("add_new_goal")}
         </button>
       </div>
     </div>
