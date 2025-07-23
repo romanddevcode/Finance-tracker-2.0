@@ -24,5 +24,7 @@
   "action_in_list": "Дія",
   "action_delete": "Видалити",
   "type_in_list_expense": "Витрати",
-  "type_in_list_income": "Дохід"
+  "type_in_list_income": "Дохід",
+  "no_transactions": "Немає транзакцій",
+  "loading": "Завантаження..."
 }

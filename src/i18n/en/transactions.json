@@ -24,5 +24,7 @@
   "action_in_list": "Action",
   "action_delete": "Delete",
   "type_in_list_expense": "Expense",
-  "type_in_list_income": "Income"
+  "type_in_list_income": "Income",
+  "no_transactions": "No transactions",
+  "loading": "Loading..."
 }

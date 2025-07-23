@@ -27,9 +27,9 @@ export const TransactionsList: React.FC = () => {
       </p>
 
       {isLoading ? (
-        <p>Завантаження...</p>
+        <p>{tTransactions("loading")}</p>
       ) : transactions.length === 0 ? (
-        <p className="text-textBase">Транзакції відсутні.</p>
+        <p className="text-textBase">{tTransactions("no_transactions")}</p>
       ) : (
         <div className="space-y-3 max-h-[400px] overflow-y-auto">
           {/* Table Header для desktop */}
