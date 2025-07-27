@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { TransactionsList } from "../TransactionsList";
@@ -17,17 +17,35 @@ let items = [
   },
 ];
 
-vi.mock("../../../../../db/db", () => ({
-  db: {
-    transactions: {
-      toArray: () => Promise.resolve([...items]),
-      delete: vi.fn((id: string) => {
-        items = items.filter((item) => item.id !== id);
-        return Promise.resolve();
-      }),
+vi.mock("../../../../../db/db", async (importActual) => {
+  const actual = await importActual<typeof import("../../../../../db/db")>();
+
+  return {
+    ...actual,
+    db: {
+      transactions: {
+        toArray: () => Promise.resolve([...items]),
+        delete: vi.fn((id: string) => {
+          items = items.filter((item) => item.id !== id);
+          return Promise.resolve();
+        }),
+      },
     },
-  },
-}));
+  };
+});
+
+afterEach(() => {
+  items = [
+    {
+      id: "test-id-1",
+      type: "income",
+      amount: 100,
+      category: "Products",
+      date: "2025-07-21",
+      description: "Test transaction",
+    },
+  ];
+});
 
 describe("TransactionsList", () => {
   it("should render the TransactionsList component", () => {
