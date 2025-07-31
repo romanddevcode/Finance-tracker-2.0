@@ -44,4 +44,29 @@ describe("AuthField", () => {
       ).toBeInTheDocument();
     });
   });
+
+  it("should display error message", async () => {
+    const user = userEvent.setup();
+
+    renderWithProviders(<AuthField />, {
+      withAuth: true,
+    });
+
+    const loginButton = screen.getByRole("button", { name: /Login/i });
+    await user.click(loginButton);
+
+    const emailInput = screen.getByPlaceholderText(/Email/i);
+    const passwordInput = screen.getByPlaceholderText(/Password/i);
+    const submitButton = screen.getByRole("button", { name: /Login/i });
+
+    await user.type(emailInput, "warmimememe@gmail.com");
+    await user.type(passwordInput, "Pigledddd");
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Request failed with status code/i)
+      ).toBeInTheDocument();
+    });
+  });
 });

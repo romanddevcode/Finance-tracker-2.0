@@ -78,7 +78,12 @@ export const AuthField = () => {
         </h2>
 
         {error && (
-          <p className="text-red-500 text-sm text-center mb-3">{error}</p>
+          <p
+            role="errorMessage"
+            className="text-red-500 text-sm text-center mb-3"
+          >
+            {error}
+          </p>
         )}
 
         <input
