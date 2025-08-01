@@ -4,7 +4,7 @@ import { useTransactions } from "../../hooks/useTransactions";
 import { getTransactionsStats } from "../../utils/calculateBalance";
 
 export const BudgetLimitMain: React.FC = () => {
-  const { data: transactions = [], isLoading } = useTransactions();
+  const { data: transactions = [] } = useTransactions();
   const { totalExpense } = getTransactionsStats(transactions); // наші витрати
 
   const { t } = useTranslation("budget");
@@ -22,14 +22,17 @@ export const BudgetLimitMain: React.FC = () => {
       <h3 className="text-lg font-medium mb-4">{t("limit")}</h3>
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-        <input
-          type="number"
-          className="border p-2 rounded w-full sm:w-40"
-          placeholder={t("limit_placeholder")}
-          value={limit ?? ""}
-          onChange={handleLimitChange}
-          disabled={!isLimitActive}
-        />
+        <label htmlFor="limitInput">
+          <input
+            type="number"
+            id="limitInput"
+            className="border p-2 rounded w-full sm:w-40"
+            placeholder={t("limit_placeholder")}
+            value={limit ?? ""}
+            onChange={handleLimitChange}
+            disabled={!isLimitActive}
+          />
+        </label>
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
