@@ -5,6 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../../../i18n";
 import { AuthProvider } from "../auth/AuthContext";
 import { afterEach } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 
 export function renderWithProviders(
   ui: ReactNode,
@@ -19,7 +20,9 @@ export function renderWithProviders(
   return render(
     <QueryClientProvider client={queryClient}>
       <I18nextProvider i18n={i18n}>
-        {options.withAuth === false ? ui : <AuthProvider>{ui}</AuthProvider>}
+        <MemoryRouter>
+          {options.withAuth === false ? ui : <AuthProvider>{ui}</AuthProvider>}
+        </MemoryRouter>
       </I18nextProvider>
     </QueryClientProvider>
   );
