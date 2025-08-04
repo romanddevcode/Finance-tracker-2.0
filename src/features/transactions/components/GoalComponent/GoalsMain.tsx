@@ -33,12 +33,14 @@ const GoalsMain: React.FC = () => {
         <input
           type="text"
           placeholder={t("goal_name")}
+          data-testid="goalNameInput"
           value={newGoal.title}
           onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
           className="w-full mb-2 p-2 border rounded text-sm"
         />
         <input
           type="number"
+          data-testid="goalAmountInput"
           placeholder={t("goal_amount")}
           value={newGoal.targetAmount || ""}
           onChange={(e) =>

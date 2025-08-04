@@ -36,7 +36,7 @@ describe("Budget", () => {
 
     expect(await screen.findByText("Balance")).toBeInTheDocument();
   });
-  it("should render the BudgetLimitMain component and check if the limit is exceeded", async () => {
+  it("should render the BudgetLimitMain component", async () => {
     const user = userEvent.setup();
 
     renderWithProviders(<Budget />, {
@@ -49,9 +49,8 @@ describe("Budget", () => {
 
     await user.click(limitFieldButton);
 
-    const limitNumberField = screen.getByPlaceholderText("limit_placeholder");
+    const limitNumberField = screen.getByTestId("limitInput");
 
-    await user.clear(limitNumberField);
     await user.type(limitNumberField, "10");
 
     await waitFor(() => {

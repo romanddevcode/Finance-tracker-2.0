@@ -26,6 +26,7 @@ export const BudgetLimitMain: React.FC = () => {
           <input
             type="number"
             id="limitInput"
+            data-testid="limitInput"
             className="border p-2 rounded w-full sm:w-40"
             placeholder={t("limit_placeholder")}
             value={limit ?? ""}
