@@ -8,4 +8,6 @@ const API = axios.create({
   },
 });
 
+console.log("API_URL", import.meta.env);
+
 export default API;

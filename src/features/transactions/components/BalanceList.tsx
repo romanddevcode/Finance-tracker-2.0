@@ -10,6 +10,8 @@ export const BalanceList = () => {
   const { totalIncome, totalExpense, balance } =
     getTransactionsStats(transactions);
 
+  console.log("BalanceList", totalIncome, totalExpense, balance, transactions);
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
