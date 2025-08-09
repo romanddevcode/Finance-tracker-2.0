@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useCurrencyStore } from "../../../../store/currencyTypeControl";
 
 interface IncomeGraphProps {
   data: { name: string; income: number }[];
@@ -17,7 +18,12 @@ interface IncomeGraphProps {
 
 export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
   console.log("IncomeGraph data: ", data);
+
+  const { selectedCurrency } = useCurrencyStore();
+
   const { t } = useTranslation("analytics");
+
+  const properName = `${t("income")} (${selectedCurrency})`;
   return (
     <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
       <h2 className="text-lg font-semibold mb-4">{name}</h2>
@@ -36,7 +42,7 @@ export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
           />
           <Legend />
           <Bar
-            name={t("income")}
+            name={properName}
             dataKey="income"
             fill="var(--color-income)"
             radius={[4, 4, 0, 0]}
