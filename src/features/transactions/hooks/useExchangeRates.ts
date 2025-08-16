@@ -10,7 +10,7 @@ export const useExchangeRates = () => {
           base: "USD",
         },
       });
-      console.log("Full response from server:", res.data);
+
       return res.data.rates as Record<string, number>;
     },
     staleTime: 1000 * 60 * 60,

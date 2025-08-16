@@ -10,14 +10,17 @@ export const MoneyFlow: React.FC = () => {
 
   const { t } = useTranslation("dashboard");
 
-  const { incomeByDateData } = useAnalyticsData(transactions, period);
+  const { incomeByDate_StackedData_RAW } = useAnalyticsData(
+    transactions,
+    period
+  );
   return (
     <div className="bg-secondary p-4 rounded-lg shadow">
       <IncomeGraph
         name={`${t("income_by_date")} ${
           period === t("week") ? t("week") : t("month")
         }`}
-        data={incomeByDateData}
+        data={incomeByDate_StackedData_RAW}
       />
     </div>
   );

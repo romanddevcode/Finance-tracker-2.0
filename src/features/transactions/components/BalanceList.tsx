@@ -13,27 +13,25 @@ export const BalanceList = () => {
   const { totalIncome, totalExpense, balance } =
     getTransactionsStats(transactions);
 
-  console.log("BalanceList", totalIncome, totalExpense, balance, transactions);
-
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-2">{t("balance_panel")}</h3>
           <p className="text-2xl font-bold">
-            {balance.toFixed(2)} {selectedCurrency}
+            {balance} {selectedCurrency}
           </p>
         </div>
         <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-2">{t("income_panel")}</h3>
           <p className="text-2xl font-bold">
-            {totalIncome.toFixed(2)} {selectedCurrency}
+            {totalIncome} {selectedCurrency}
           </p>
         </div>
         <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-2">{t("expense_panel")}</h3>
           <p className="text-2xl font-bold">
-            {totalExpense.toFixed(2)} {selectedCurrency}
+            {totalExpense} {selectedCurrency}
           </p>
         </div>
       </div>

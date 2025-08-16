@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type {
   Theme,
   ThemeState,
@@ -10,11 +11,19 @@ export const useUIStore = create<UIState>((set) => ({
   toggleModal: () => set((s) => ({ isModalOpen: !s.isModalOpen })),
 }));
 
-export const useThemeStore = create<ThemeState>((set) => ({
-  themeController: "light",
-  toggleTheme: () =>
-    set((state) => ({
-      themeController: state.themeController === "light" ? "dark" : "light",
-    })),
-  setTheme: (t: Theme) => set({ themeController: t }),
-}));
+// Theme store with persist
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      themeController: "light",
+      toggleTheme: () =>
+        set((state) => ({
+          themeController: state.themeController === "light" ? "dark" : "light",
+        })),
+      setTheme: (t: Theme) => set({ themeController: t }),
+    }),
+    {
+      name: "theme-storage", // key in localStorage
+    }
+  )
+);
