@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import IncomeGraph from "../AnlyticsComp/IncomeGraph";
 import { useAnalyticsData } from "../../hooks/useAnalyticsData";
 import { useTransactions } from "../../hooks/useTransactions";
