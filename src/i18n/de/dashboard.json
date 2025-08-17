@@ -8,7 +8,8 @@
   "balance_panel": "Saldo",
   "income_panel": "Einnahmen",
   "expense_panel": "Ausgaben",
-  "income_by_date": "Einnahmen per Datum für ",
-  "week": "woche",
-  "month": "monat"
+  "income_by_date": "Einnahmen per Datum",
+  "week": "Woche",
+  "month": "Monat",
+  "year": "Jahr"
 }

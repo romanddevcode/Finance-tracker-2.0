@@ -7,7 +7,7 @@ import ExpenseGraph from "../features/transactions/components/AnlyticsComp/Expen
 import { useTranslation } from "react-i18next";
 import { periodStore } from "../store/periodStore";
 
-const Analytics: React.FC = () => {
+const AnalyticsPage: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
   const { period, setPeriod } = periodStore();
 
@@ -39,11 +39,11 @@ const Analytics: React.FC = () => {
         </div>
         <div className="px-4 sm:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <IncomeGraph
-            name={t("income_by_date")}
+            name={`${t("income_by_date")} (${t(period)})`}
             data={incomeByDate_StackedData_RAW}
           />
           <ExpenseGraph
-            name={t("expenses_by_date_and_category")}
+            name={`${t("expenses_by_date_and_category")} (${t(period)})`}
             data={expenseByDateAndCategory_StackedData_RAW}
             categories={allCategories}
           />
@@ -53,4 +53,4 @@ const Analytics: React.FC = () => {
   );
 };
 
-export default Analytics;
+export default AnalyticsPage;

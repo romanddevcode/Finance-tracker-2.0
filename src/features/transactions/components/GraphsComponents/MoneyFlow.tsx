@@ -3,10 +3,11 @@ import IncomeGraph from "../AnlyticsComp/IncomeGraph";
 import { useAnalyticsData } from "../../hooks/useAnalyticsData";
 import { useTransactions } from "../../hooks/useTransactions";
 import { useTranslation } from "react-i18next";
+import { periodStore } from "../../../../store/periodStore";
 
 export const MoneyFlow: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
-  const [period] = useState<"week" | "month" | "year">("week");
+  const { period } = periodStore();
 
   const { t } = useTranslation("dashboard");
 
@@ -17,9 +18,7 @@ export const MoneyFlow: React.FC = () => {
   return (
     <div className="bg-secondary p-4 rounded-lg shadow">
       <IncomeGraph
-        name={`${t("income_by_date")} ${
-          period === t("week") ? t("week") : t("month")
-        }`}
+        name={`${t("income_by_date")} (${t(period)})`}
         data={incomeByDate_StackedData_RAW}
       />
     </div>
