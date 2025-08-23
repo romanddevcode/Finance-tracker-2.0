@@ -12,17 +12,28 @@ export const useAddGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
 
-  return useMutation({
+  return useMutation<Goal, Error, Goal>({
     mutationFn: async (goal: Goal) => {
-      if (token) {
-        await API.post("/api/goals", goal);
+      if (token && navigator.onLine) {
+        const { data } = await API.post<Goal>("/api/goals", goal);
+        return data;
       } else {
-        await addLocalGoal(goal);
+        await addLocalGoal(goal).catch((error) => console.error(error));
+        return goal;
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async (newGoal) => {
+      await queryClient.cancelQueries({ queryKey: ["goals"] });
+      const previousGoals = queryClient.getQueryData<Goal[]>(["goals"]);
+
+      queryClient.setQueryData<Goal[]>(["goals"], (old = []) => [
+        ...old,
+        newGoal,
+      ]);
+
+      return { previousGoals };
     },
+    onError: (error: any) => console.error(error),
   });
 };
 
@@ -30,17 +41,29 @@ export const useUpdateGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
 
-  return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<Goal> }) => {
-      if (token) {
-        await API.patch(`/api/goals/${id}`, data);
+  return useMutation<Goal, Error, { id: string; data: Partial<Goal> }>({
+    mutationFn: async ({ id, data }) => {
+      if (token && navigator.onLine) {
+        const { data: updatedData } = await API.patch<Goal>(
+          `/api/goals/${id}`,
+          data
+        );
+        return updatedData;
       } else {
-        await updateLocalGoal(id, data);
+        await updateLocalGoal(id, data).catch((error) => console.error(error));
+        return { id, ...data } as Goal;
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async ({ id, data }) => {
+      await queryClient.cancelQueries({ queryKey: ["goals"] });
+      const previousGoals = queryClient.getQueryData<Goal[]>(["goals"]);
+
+      queryClient.setQueryData<Goal[]>(["goals"], (old = []) =>
+        old.map((g) => (g.id === id ? { ...g, ...data } : g))
+      );
+      return { previousGoals };
     },
+    onError: (error: any) => console.error(error),
   });
 };
 
@@ -48,16 +71,25 @@ export const useDeleteGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
 
-  return useMutation({
+  return useMutation<string, Error, string>({
     mutationFn: async (id: string) => {
-      if (token) {
+      if (token && navigator.onLine) {
         await API.delete(`/api/goals/${id}`);
       } else {
-        await deleteLocalGoal(id);
+        await deleteLocalGoal(id).catch((error) => console.error(error));
       }
+      return id;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async (deletedId) => {
+      await queryClient.cancelQueries({ queryKey: ["goals"] });
+      const previousGoals = queryClient.getQueryData<Goal[]>(["goals"]);
+
+      queryClient.setQueryData<Goal[]>(["goals"], (old = []) =>
+        old.filter((g) => g.id !== deletedId)
+      );
+
+      return { previousGoals };
     },
+    onError: (error: any) => console.error(error),
   });
 };

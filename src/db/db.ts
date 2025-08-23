@@ -14,7 +14,7 @@ class FinanceDB extends Dexie {
       transactions:
         "++id, type, amount, currency, date, description, category, isSynced",
       settings: "&id",
-      goals: "&id, title, targetAmount, currentAmount",
+      goals: "&id, title, targetAmount, currentAmount, currency",
     });
   }
 }
