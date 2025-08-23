@@ -21,7 +21,6 @@ const GoalsMain: React.FC = () => {
       title: newGoal.title.trim(),
       targetAmount: newGoal.targetAmount,
       currentAmount: 0,
-
       currency: newGoal.currency,
     };
 

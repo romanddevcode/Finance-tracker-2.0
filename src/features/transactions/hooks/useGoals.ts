@@ -8,7 +8,7 @@ export const useGoals = () => {
   const { token } = useAuth();
 
   return useQuery<Goal[]>({
-    queryKey: ["goals"],
+    queryKey: token ? ["goals", "server"] : ["goals", "local"],
     queryFn: async () => {
       if (token && navigator.onLine) {
         const { data: res } = await API.get("/api/goals");
