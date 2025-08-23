@@ -19,14 +19,12 @@ export const useAddTransaction = () => {
   return useMutation({
     mutationFn: async (transaction: Transaction) => {
       if (token && navigator.onLine) {
-        console.log("Added transaction to server: ", transaction);
         const { data } = await API.post<Transaction>(
           "/api/transactions",
           transaction
         );
         return data;
       } else {
-        console.log("Added to Dexie LOCAL: ", transaction);
         await addLocalTransaction(transaction).catch((error) =>
           console.error(error)
         );
@@ -73,10 +71,8 @@ export const useDeleteTransaction = () => {
   return useMutation({
     mutationFn: async (id: string) => {
       if (token && navigator.onLine) {
-        console.log("Deleted transaction from server: ", id);
         await API.delete(`/api/transactions/${id}`);
       } else {
-        console.log("Deleted from Dexie LOCAL: ", id);
         await deleteLocalTransaction(id).catch((error) => console.error(error));
       }
     },

@@ -9,15 +9,15 @@ export const getLocalTransactions = async (): Promise<Transaction[]> => {
 export const addLocalTransaction = async (
   tx: Transaction
 ): Promise<Transaction> => {
-  const id = db.transactions.add({ ...tx });
+  const id = await db.transactions.add({ ...tx });
   const newTransaction = await db.transactions.get(id);
+
   if (!newTransaction) throw new Error("Transaction not found");
 
   return newTransaction;
 };
 
 export const deleteLocalTransaction = async (id: string): Promise<string> => {
-  console.log("Deleted from Dexie LOCAL: ", id);
   await db.transactions.delete(id);
   return id;
 };
