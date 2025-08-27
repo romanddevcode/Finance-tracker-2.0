@@ -6,5 +6,4 @@ export interface Transaction {
   date: string; // можно использовать Date
   description?: string;
   category: string;
-  isSynced: 0 | 1; // если ты хочешь отмечать, отправлен ли на сервер
 }

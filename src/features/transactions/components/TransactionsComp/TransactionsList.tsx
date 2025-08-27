@@ -4,6 +4,8 @@ import { useTransactions } from "../../hooks/useTransactions";
 import type { Transaction } from "../../types/transactionInterface";
 import { useTranslation } from "react-i18next";
 import { useCurrencyStore } from "../../../../store/currencyTypeControl";
+import { useCallback } from "react";
+import TransactionCard from "./TransactionsCard";
 
 export const TransactionsList: React.FC = () => {
   const { data: transactions = [], isLoading } = useTransactions();
@@ -12,13 +14,20 @@ export const TransactionsList: React.FC = () => {
   const { selectedCurrency, setCurrency } = useCurrencyStore();
 
   const { t: tTransactions } = useTranslation("transactions");
-  const { t: tAnalytics } = useTranslation("analytics");
 
   const deleteTransactionMutation = useDeleteTransaction();
 
-  const handleDelete = async (id: string) => {
-    await deleteTransactionMutation.mutateAsync(id);
-  };
+  const handleDelete = useCallback(
+    async (id: string) => {
+      if (!id) return;
+      try {
+        await deleteTransactionMutation.mutateAsync(id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [deleteTransactionMutation]
+  );
 
   return (
     <div className="bg-secondary text-textBase p-4 rounded-lg shadow-md">
@@ -63,74 +72,13 @@ export const TransactionsList: React.FC = () => {
 
           {/* Transactions */}
           {transactions.map((tx: Transaction, index: number) => (
-            <div
-              key={`${tx.id}-${index}`}
-              className="grid sm:grid-cols-6 grid-cols-1 gap-y-1 gap-x-4 p-3 border rounded-md shadow-sm text-sm sm:items-center"
-            >
-              {/* Desktop: просто текст */}
-              {/* Mobile: Лейбл + значення */}
-              <div>
-                <span className="sm:hidden">
-                  {tTransactions("type_in_list")}
-                </span>
-                <span
-                  className={`font-semibold ${
-                    tx.type === "income" ? "text-income" : "text-expense"
-                  }`}
-                >
-                  {tx.type === "income"
-                    ? `${tTransactions("transaction_type_income")}`
-                    : `${tTransactions("transaction_type_expense")}`}
-                </span>
-              </div>
-
-              <div>
-                <span className="sm:hidden">
-                  {tTransactions("summ_in_list")}
-                </span>
-                <span
-                  className={`${
-                    tx.type === "income" ? "text-income" : "text-expense"
-                  }`}
-                >
-                  {tx.type === "income" ? "+" : "-"} {tx.amount.toFixed(2)}{" "}
-                  {tx.currency}
-                </span>
-              </div>
-
-              <div>
-                <span className="sm:hidden">
-                  {tTransactions("category_in_list")}
-                </span>
-                {tAnalytics(`categories.${tx.category}`)}
-              </div>
-
-              <div>
-                <span className="sm:hidden">
-                  {tTransactions("date_in_list")}
-                </span>
-                {tx.date}
-              </div>
-
-              <div className="break-words">
-                <span className="sm:hidden">
-                  {tTransactions("description_in_list")}
-                </span>
-                {tx.description || "-"}
-              </div>
-
-              <div>
-                <span className="sm:hidden">
-                  {tTransactions("action_in_list")}
-                </span>
-                <button
-                  onClick={() => handleDelete(tx.id!)}
-                  className="text-red-500 hover:text-red-700 transition"
-                >
-                  {tTransactions("action_delete")}
-                </button>
-              </div>
-            </div>
+            <TransactionCard
+              key={tx.id}
+              tx={tx}
+              index={index}
+              tTransactions={tTransactions}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       )}
