@@ -10,7 +10,7 @@ import "./index.css";
 
 import Dashboard from "./pages/Dashboards.tsx";
 import TransactionsPage from "./pages/TransactionsPage.tsx";
-import Budget from "./pages/Budget.tsx";
+import BudgetPage from "./pages/BudgetPage.tsx";
 import AnalyticsPage from "./pages/AnalyticsPage.tsx";
 import GoalsPage from "./pages/GoalsPage.tsx";
 import { AuthProvider } from "./features/transactions/auth/AuthContext.tsx";
@@ -32,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/Budget" element={<Budget />} />
+        <Route path="/Budget" element={<BudgetPage />} />
         <Route path="/Analytics" element={<AnalyticsPage />} />
         <Route path="/Goals" element={<GoalsPage />} />
         <Route path="/Transactions" element={<TransactionsPage />} />
