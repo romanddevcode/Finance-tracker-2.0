@@ -1,9 +1,9 @@
 // src/features/auth/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 import API from "../services/api/axios";
-import { syncTransactions } from "../services/syncServices";
 import type { AuthContextValue } from "../types/AuthContextValue";
 import type { Props } from "../types/Props";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AuthCtx = createContext<AuthContextValue>(null!);
 
@@ -11,6 +11,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
+
+  const queryClient = useQueryClient();
 
   // При появлении токена — синхронизируем старые данные ПОКА ЧТО В ДОРАБОТКЕ
   useEffect(() => {
@@ -35,6 +37,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const logout = () => {
+    queryClient.clear();
     localStorage.removeItem("token");
     setToken(null);
   };
