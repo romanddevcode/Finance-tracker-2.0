@@ -2,7 +2,8 @@ import axios from "axios";
 
 const currencyAPI = axios.create({
   baseURL:
-    import.meta.env.VITE_CURRENCY_API_URL || "https://api.exchangerate.host",
+    import.meta.env.VITE_CURRENCY_API_URL ||
+    "https://openexchangerates.org/api",
   headers: {
     "Content-Type": "application/json",
   },
