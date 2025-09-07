@@ -11,25 +11,15 @@ export const useGoals = () => {
     queryKey: token ? ["goals", "server"] : ["goals", "local"],
     queryFn: async () => {
       if (token && navigator.onLine) {
-        const { data: res } = await API.get("/api/goals");
-        if (!res) throw new Error("No goals found");
-        const convertedDate = res.map((g: Goal) => ({
-          currency: g.currency,
-          currentAmount: g.currentAmount,
-          id: g.id,
-          title: g.title,
-          targetAmount: g.targetAmount,
-        }));
-
-        return convertedDate;
+        const { data } = await API.get<Goal[]>("/api/goals");
+        return data;
       } else {
         return await getLocalGoals();
       }
     },
-
     enabled: token !== undefined,
-    staleTime: 1000 * 60 * 60,
-    refetchInterval: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 60, // 1 час
+    refetchInterval: 1000 * 60 * 5, // 5 минут
     refetchOnWindowFocus: false,
   });
 };
