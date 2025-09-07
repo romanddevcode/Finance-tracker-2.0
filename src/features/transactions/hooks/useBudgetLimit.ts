@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBudgetLimitLocal } from "../services/budgetService";
 import { useAuth } from "../auth/AuthContext";
 import API from "../services/api/axios";
+import type { SettingsLimit } from "../types/budgetLimit";
 
 export const useBudgetLimit = () => {
   const { token } = useAuth();
@@ -15,11 +16,13 @@ export const useBudgetLimit = () => {
     queryKey: queryKeyHandler,
     queryFn: async () => {
       if (token && navigator.onLine) {
-        const res = await API.get("/api/budgetsettings");
-        console.log("Budget settings from server:", res.data);
-        return res.data;
+        const { data: res } = await API.get("/api/budgetsettings");
+        if (!res || res.length === 0) {
+          return null;
+        }
+        const { id, value, currency, isActivated } = res;
+        return { id, value, currency, isActivated } as SettingsLimit;
       } else {
-        console.log("No token, using local limit(Dexie)");
         return await getBudgetLimitLocal();
       }
     },
