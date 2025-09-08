@@ -8,42 +8,78 @@ import { useQueryClient } from "@tanstack/react-query";
 const AuthCtx = createContext<AuthContextValue>(null!);
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
+  const [accessToken, setAccessToken] = useState<string | null>(
+    localStorage.getItem("accessToken")
+  );
+  const [refreshToken, setRefreshToken] = useState<string | null>(
+    localStorage.getItem("refreshToken")
   );
 
   const queryClient = useQueryClient();
 
-  // При появлении токена — синхронизируем старые данные ПОКА ЧТО В ДОРАБОТКЕ
   useEffect(() => {
-    if (token) {
-      API.defaults.headers.common.Authorization = `Bearer ${token}`;
+    if (accessToken) {
+      API.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
       delete API.defaults.headers.common.Authorization;
-      localStorage.removeItem("token");
     }
-  }, [token]);
+  }, [accessToken]);
 
   const register = async (email: string, pass: string) => {
     const { data } = await API.post("/api/register", { email, password: pass });
-    localStorage.setItem("token", data.token);
-    setToken(data.token);
+
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+
+    setAccessToken(data.accessToken);
+    setRefreshToken(data.refreshToken);
   };
 
   const login = async (email: string, pass: string) => {
     const { data } = await API.post("/api/login", { email, password: pass });
-    localStorage.setItem("token", data.token);
-    setToken(data.token);
+
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+
+    setAccessToken(data.accessToken);
+    setRefreshToken(data.refreshToken);
   };
 
   const logout = () => {
     queryClient.clear();
-    localStorage.removeItem("token");
-    setToken(null);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setAccessToken(null);
+    setRefreshToken(null);
+  };
+
+  const refresh = async () => {
+    if (!refreshToken) {
+      logout();
+      return null;
+    }
+    try {
+      const { data } = await API.post("/api/refresh", { refreshToken });
+      localStorage.setItem("accessToken", data.accessToken);
+      setAccessToken(data.accessToken);
+      return data.accessToken;
+    } catch (err) {
+      console.error("Refresh error", err);
+      logout();
+      return null;
+    }
   };
 
   return (
-    <AuthCtx.Provider value={{ token, login, logout, register }}>
+    <AuthCtx.Provider
+      value={{
+        token: accessToken, // для обратной совместимости
+        login,
+        logout,
+        register,
+        refresh,
+      }}
+    >
       {children}
     </AuthCtx.Provider>
   );

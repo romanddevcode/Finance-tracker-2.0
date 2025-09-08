@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { useAuth } from "../auth/AuthContext";
+
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../auth/AuthContext";
 
 export const AuthField = () => {
   const { login, register, logout, token } = useAuth(); // добавляем token для проверки
