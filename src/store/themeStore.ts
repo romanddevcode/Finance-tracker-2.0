@@ -1,10 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type {
-  Theme,
-  ThemeState,
-  UIState,
-} from "../features/transactions/types/themeInterface";
+import type { Theme, ThemeState, UIState } from "../types/themeInterface";
 
 export const useUIStore = create<UIState>((set) => ({
   isModalOpen: false,

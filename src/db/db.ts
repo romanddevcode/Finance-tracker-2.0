@@ -1,7 +1,7 @@
 import Dexie, { type Table } from "dexie";
-import type { Transaction } from "../features/transactions/types/transactionInterface";
-import type { SettingsLimit } from "../features/transactions/types/budgetLimit";
-import type { Goal } from "../features/transactions/types/goalsInterface";
+import type { Transaction } from "../types/transactionInterface";
+import type { SettingsLimit } from "../types/settingsLimit";
+import type { Goal } from "../types/goalsInterface";
 
 class FinanceDB extends Dexie {
   transactions!: Table<Transaction>;

@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "../features/transactions/components/sidebar";
+import Sidebar from "../components/General/Sidebar";
 
-import TransactionsList from "../features/transactions/components/TransactionsComp/TransactionsList";
-import TransactionsMain from "../features/transactions/components/TransactionsComp/TransactionsMain";
+import TransactionsList from "../components/Transactions/TransactionsList";
+import TransactionsMain from "../components/Transactions/TransactionsMain";
 
 const TransactionsPage: React.FC = () => {
   return (

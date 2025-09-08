@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { DateControlInterface } from "../features/transactions/types/dateControl";
+import type { DateControlInterface } from "../types/dateControl";
 
-export const periodStore = create<DateControlInterface>()(
+export const usePeriodStore = create<DateControlInterface>()(
   persist(
     (set) => ({
       period: "week",

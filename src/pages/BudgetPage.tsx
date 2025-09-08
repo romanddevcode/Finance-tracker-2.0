@@ -1,11 +1,11 @@
 import React from "react";
-import Sidebar from "../features/transactions/components/sidebar";
+import Sidebar from "../components/General/Sidebar";
 
-import BudgetLimitMain from "../features/transactions/components/BudgetComponent/BudgetLimitMain";
+import BudgetLimitMain from "../components/Budget/BudgetLimitMain";
 import { useTranslation } from "react-i18next";
 
-import ExpensePanel from "../features/transactions/components/GeneralComponents/ExpensePanel";
-import BalancePanel from "../features/transactions/components/GeneralComponents/BalancePanel";
+import ExpensePanel from "../components/General/ExpensePanel";
+import BalancePanel from "../components/General/BalancePanel";
 
 const BudgetPage: React.FC = () => {
   const { t } = useTranslation("budget");
