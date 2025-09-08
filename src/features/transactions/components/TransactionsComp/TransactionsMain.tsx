@@ -9,12 +9,15 @@ import {
 } from "../../../../validations/transactionsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorPopup from "../GeneralComponents/ErrorPopup";
+import useBalanceStateLimit from "../../../../store/balanceStateLimit";
+import WarningPopup from "../GeneralComponents/WarningPopup";
 
 export const TransactionsMain: React.FC = () => {
   const addTransactionMutation = useAddTransaction();
   const [errorMessagePopup, setErrorMessagePopup] = useState<string | null>(
     null
   );
+  const [warningMessage, setWarningMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (addTransactionMutation.isError) {
@@ -23,6 +26,8 @@ export const TransactionsMain: React.FC = () => {
       setErrorMessagePopup(null);
     }
   }, [addTransactionMutation.isError, addTransactionMutation.error]);
+
+  const { isOverLimit } = useBalanceStateLimit();
 
   const { t } = useTranslation("transactions");
 
@@ -44,6 +49,12 @@ export const TransactionsMain: React.FC = () => {
   });
 
   const onSubmit = async (data: TransactionsFormValues) => {
+    if (isOverLimit && data.type === "expense")
+      return setTimeout(
+        () => setWarningMessage(t("warning_message")),
+        500,
+        setWarningMessage(null)
+      );
     if (data.amount <= 0) return;
     const newTransaction: Transaction = {
       ...data,
@@ -70,6 +81,10 @@ export const TransactionsMain: React.FC = () => {
 
       {errorMessagePopup && (
         <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
+      )}
+
+      {warningMessage && (
+        <WarningPopup key={warningMessage} warningMessage={warningMessage} />
       )}
       {/* Форма */}
       <form onSubmit={handleSubmit(onSubmit)}>
