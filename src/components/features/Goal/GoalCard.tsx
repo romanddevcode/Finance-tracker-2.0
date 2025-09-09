@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { Goal } from "../../types/goalsInterface";
+import type { Goal } from "./types/goalsInterface";
 import React, { useState } from "react";
 import GoalGraph from "./GoalGraph";
 

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useAddTransaction } from "../../hooks/useTransactionsMutation";
-import type { Transaction } from "../../types/transactionInterface";
+import { useAddTransaction } from "./hooks/mutations/useTransactionsMutation";
+import type { Transaction } from "./types/transactionInterface";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import {
   trsancationsSchema,
   type TransactionsFormValues,
-} from "../../validations/transactionsSchema";
+} from "../../../validations/transactionsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ErrorPopup from "../General/ErrorPopup";
-import useBalanceStateLimit from "../../store/balanceStateLimitStore";
-import WarningPopup from "../General/WarningPopup";
+import ErrorPopup from "../../General/ErrorPopup";
+import useBalanceStateLimit from "../../../services/store/balanceStateLimitStore";
+import WarningPopup from "../../General/WarningPopup";
 
 export const TransactionsMain: React.FC = () => {
   const addTransactionMutation = useAddTransaction();

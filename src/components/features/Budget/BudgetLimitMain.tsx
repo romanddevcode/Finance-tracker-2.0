@@ -1,21 +1,21 @@
 import { useTranslation } from "react-i18next";
-import useSetBudgetLimit from "../../hooks/useBudgetLimitMutations";
-import type { SettingsLimit } from "../../types/settingsLimit";
-import { useBudgetLimit } from "../../hooks/useBudgetLimit";
-import { getTransactionsStats } from "../../utils/transactionsStats";
-import { useTransactions } from "../../hooks/useTransactions";
+import useSetBudgetLimit from "./hooks/mutations/useBudgetLimitMutations";
+import type { SettingsLimit } from "./types/settingsLimit";
+import { useBudgetLimit } from "./hooks/useBudgetLimit";
+import { getTransactionsStats } from "../../../utils/transactionsStats";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   budgetLimitSchema,
   type BudgetLimitFormValues,
-} from "../../validations/budgetLimitSchema";
-import useBalanceStateLimit from "../../store/balanceStateLimitStore";
+} from "../../../validations/budgetLimitSchema";
+import useBalanceStateLimit from "../../../services/store/balanceStateLimitStore";
 import { useEffect, useState } from "react";
-import { currencyConventor } from "../../utils/currencyConventor";
-import { useCurrencyStore } from "../../store/currencyStore";
-import { useExchangeRates } from "../../hooks/useExchangeRates";
-import ErrorPopup from "../General/ErrorPopup";
+import { currencyConventor } from "../../../utils/currencyConventor";
+import { useCurrencyStore } from "../../../services/store/currencyStore";
+import { useExchangeRates } from "../../../hooks/useExchangeRates";
+import ErrorPopup from "../../General/ErrorPopup";
 
 export const BudgetLimitMain: React.FC = () => {
   const { t } = useTranslation("budget");

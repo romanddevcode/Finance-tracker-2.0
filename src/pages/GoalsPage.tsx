@@ -1,6 +1,6 @@
 import React from "react";
-import GoalsMain from "../components/Goal/GoalsMain";
-import GoalsList from "../components/Goal/GoalsList";
+import GoalsMain from "../components/features/Goal/GoalsMain";
+import GoalsList from "../components/features/Goal/GoalsList";
 import Sidebar from "../components/General/Sidebar";
 import { useTranslation } from "react-i18next";
 

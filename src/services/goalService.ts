@@ -1,5 +1,5 @@
 import { db } from "../db/db";
-import type { Goal } from "../types/goalsInterface";
+import type { Goal } from "../components/features/Goal/types/goalsInterface";
 
 export const getLocalGoals = async (): Promise<Goal[]> => {
   const all = await db.goals.toArray();

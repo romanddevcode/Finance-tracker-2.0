@@ -1,5 +1,5 @@
 import { db } from "../db/db";
-import type { Transaction } from "../types/transactionInterface";
+import type { Transaction } from "../components/features/Transactions/types/transactionInterface";
 
 export const getLocalTransactions = async (): Promise<Transaction[]> => {
   const all = await db.transactions.toArray();

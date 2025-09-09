@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { Transaction } from "../../types/transactionInterface";
+import type { Transaction } from "./types/transactionInterface";
 import React from "react";
 
 interface TransactionCardProps {

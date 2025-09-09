@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBudgetLimitLocal } from "../services/budgetService";
-import { useAuth } from "../auth/AuthContext";
-import API from "../services/api/axios";
+import { getBudgetLimitLocal } from "../../../../services/budgetService";
+import { useAuth } from "../../../../auth/AuthContext";
+import API from "../../../../services/api/axios";
 import type { SettingsLimit } from "../types/settingsLimit";
 
 export const useBudgetLimit = () => {

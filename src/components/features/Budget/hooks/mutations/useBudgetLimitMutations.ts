@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "../auth/AuthContext";
-import type { SettingsLimit } from "../types/settingsLimit";
-import API from "../services/api/axios";
-import { setBudgetLimitLocal } from "../services/budgetService";
+import { useAuth } from "../../../../../auth/AuthContext";
+import type { SettingsLimit } from "../../types/settingsLimit";
+import API from "../../../../../services/api/axios";
+import { setBudgetLimitLocal } from "../../../../../services/budgetService";
 
 export const useSetBudgetLimit = () => {
   const queryClient = useQueryClient();

@@ -1,4 +1,4 @@
-import TransactionsList from "../Transactions/TransactionsList";
+import TransactionsList from "../features/Transactions/TransactionsList";
 
 export const RecentTransactionGraph: React.FC = () => {
   return (

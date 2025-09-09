@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { useCurrencyStore } from "../store/currencyStore";
-import { useExchangeRates } from "./useExchangeRates";
-import { currencyConventor } from "../utils/currencyConventor";
-import filterByPeriod from "../utils/filterByPeriod";
-import type { Transaction } from "../types/transactionInterface";
-import type { Period } from "../types/dateControl";
+import { useCurrencyStore } from "../../../../services/store/currencyStore";
+import { useExchangeRates } from "../../../../hooks/useExchangeRates";
+import { currencyConventor } from "../../../../utils/currencyConventor";
+import filterByPeriod from "../../../../utils/filterByPeriod";
+import type { Transaction } from "../../Transactions/types/transactionInterface";
+import type { Period } from "../../../../types/dateControl";
 import type { AccamulatedData } from "../types/analyticsDataInterface";
 
 export const useAnalyticsData = (

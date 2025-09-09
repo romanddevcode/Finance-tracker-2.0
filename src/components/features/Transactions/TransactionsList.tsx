@@ -1,9 +1,9 @@
-import { useDeleteTransaction } from "../../hooks/useTransactionsMutation";
-import { getTransactionsStats } from "../../utils/transactionsStats";
-import { useTransactions } from "../../hooks/useTransactions";
-import type { Transaction } from "../../types/transactionInterface";
+import { useDeleteTransaction } from "./hooks/mutations/useTransactionsMutation";
+import { getTransactionsStats } from "../../../utils/transactionsStats";
+import { useTransactions } from "./hooks/useTransactions";
+import type { Transaction } from "./types/transactionInterface";
 import { useTranslation } from "react-i18next";
-import { useCurrencyStore } from "../../store/currencyStore";
+import { useCurrencyStore } from "../../../services/store/currencyStore";
 import { useCallback } from "react";
 import TransactionCard from "./TransactionsCard";
 

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { useCurrencyStore } from "../store/currencyStore";
+import { useCurrencyStore } from "../services/store/currencyStore";
 import { useExchangeRates } from "../hooks/useExchangeRates";
-import { type Transaction } from "../types/transactionInterface";
+import { type Transaction } from "../components/features/Transactions/types/transactionInterface";
 import { currencyConventor } from "./currencyConventor";
 
 export const getTransactionsStats = (transactions: Transaction[]) => {

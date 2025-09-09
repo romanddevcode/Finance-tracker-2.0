@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import API from "../services/api/axios";
+import API from "../../../../../services/api/axios";
 import {
   addLocalGoal,
   deleteLocalGoal,
   updateLocalGoal,
-} from "../services/goalService";
-import type { Goal } from "../types/goalsInterface";
-import { useAuth } from "../auth/AuthContext";
+} from "../../../../../services/goalService";
+import type { Goal } from "./../../types/goalsInterface";
+import { useAuth } from "../../../../../auth/AuthContext";
 
 export const useAddGoal = () => {
   const queryClient = useQueryClient();

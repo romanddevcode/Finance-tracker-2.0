@@ -1,11 +1,11 @@
 import React from "react";
-import { useTransactions } from "../hooks/useTransactions";
+import { useTransactions } from "../components/features/Transactions/hooks/useTransactions";
 import Sidebar from "../components/General/Sidebar";
-import { useAnalyticsData } from "../hooks/useAnalyticsData";
-import IncomeGraph from "../components/Anlaytics/IncomeGraph";
-import ExpenseGraph from "../components/Anlaytics/ExpenseGraph";
+import { useAnalyticsData } from "../components/features/Anlaytics/hooks/useAnalyticsData";
+import IncomeGraph from "../components/features/Anlaytics/IncomeGraph";
+import ExpenseGraph from "../components/features/Anlaytics/ExpenseGraph";
 import { useTranslation } from "react-i18next";
-import { usePeriodStore } from "../store/periodStore";
+import { usePeriodStore } from "../services/store/periodStore";
 
 const AnalyticsPage: React.FC = () => {
   const { data: transactions = [] } = useTransactions();

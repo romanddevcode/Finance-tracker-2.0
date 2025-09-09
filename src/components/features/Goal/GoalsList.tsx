@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
-import { useGoals } from "../../hooks/useGoals";
-import { useUpdateGoal, useDeleteGoal } from "../../hooks/useGoalMutations";
+import { useGoals } from "../Goal/hooks/useGoals";
+import {
+  useUpdateGoal,
+  useDeleteGoal,
+} from "../Goal/hooks/mutations/useGoalMutations";
 
 import GoalCard from "./GoalCard";
 

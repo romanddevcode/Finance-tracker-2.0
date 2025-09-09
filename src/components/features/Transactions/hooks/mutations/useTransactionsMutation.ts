@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import API from "../services/api/axios";
+import API from "../../../../../services/api/axios";
 import {
   addLocalTransaction,
   deleteLocalTransaction,
-} from "../services/localTransactionsService";
-import type { Transaction } from "../types/transactionInterface";
-import { useAuth } from "../auth/AuthContext";
+} from "../../../../../services/localTransactionsService";
+import type { Transaction } from "../../types/transactionInterface";
+import { useAuth } from "../../../../../auth/AuthContext";
 
 export const useAddTransaction = () => {
   const { token } = useAuth();

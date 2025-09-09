@@ -1,5 +1,5 @@
 // components/ThemeToggle.tsx
-import { useThemeStore } from "../../store/themeStore";
+import { useThemeStore } from "../../services/store/themeStore";
 
 const ThemeToggle = () => {
   const { themeController, toggleTheme } = useThemeStore();

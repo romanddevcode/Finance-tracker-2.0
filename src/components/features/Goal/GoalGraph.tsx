@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import type { GoalGraphProps } from "../../types/goalsGraphsInterface";
+import type { GoalGraphProps } from "./types/goalsGraphsInterface";
 
 export const GoalGraph = ({ data }: GoalGraphProps) => {
   const { t } = useTranslation("goals");

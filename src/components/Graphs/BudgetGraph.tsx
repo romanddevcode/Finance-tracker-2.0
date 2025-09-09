@@ -1,4 +1,4 @@
-import BudgetLimitMain from "../Budget/BudgetLimitMain";
+import BudgetLimitMain from "../features/Budget/BudgetLimitMain";
 
 export const BudgetGraph: React.FC = () => {
   return (

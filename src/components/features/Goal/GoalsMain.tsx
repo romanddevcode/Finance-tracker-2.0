@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAddGoal } from "../../hooks/useGoalMutations";
+import { useAddGoal } from "../Goal/hooks/mutations/useGoalMutations";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   goalsSchema,
   type GoalsFormValues,
-} from "../../validations/goalsSchema";
-import ErrorPopup from "../General/ErrorPopup";
+} from "../../../validations/goalsSchema";
+import ErrorPopup from "../../General/ErrorPopup";
 
 const GoalsMain: React.FC = () => {
   const addGoalMutation = useAddGoal();

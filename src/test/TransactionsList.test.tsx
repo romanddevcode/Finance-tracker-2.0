@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { TransactionsList } from "../components/Transactions/TransactionsList";
+import { TransactionsList } from "../components/features/Transactions/TransactionsList";
 import { renderWithProviders } from "../utils/renderWithProviders";
 
 // const { t } = useTranslation("transactions");

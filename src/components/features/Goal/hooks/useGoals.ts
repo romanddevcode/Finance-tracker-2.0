@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../../../../auth/AuthContext";
 import type { Goal } from "../types/goalsInterface";
-import { getLocalGoals } from "../services/goalService";
-import API from "../services/api/axios";
+import { getLocalGoals } from "../../../../services/goalService";
+import API from "../../../../services/api/axios";
 
 export const useGoals = () => {
   const { token } = useAuth();

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { useCurrencyStore } from "../../store/currencyStore";
-import { useTransactions } from "../../hooks/useTransactions";
+import { useCurrencyStore } from "../../services/store/currencyStore";
+import { useTransactions } from "../features/Transactions/hooks/useTransactions";
 import { getTransactionsStats } from "../../utils/transactionsStats";
 
 export const BalancePanel: React.FC = () => {

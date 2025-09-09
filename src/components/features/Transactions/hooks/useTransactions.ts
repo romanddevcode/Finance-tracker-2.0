@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getLocalTransactions } from "../services/localTransactionsService";
-import { useAuth } from "../auth/AuthContext";
-import API from "../services/api/axios";
+import { getLocalTransactions } from "../../../../services/localTransactionsService";
+import { useAuth } from "../../../../auth/AuthContext";
+import API from "../../../../services/api/axios";
 
 export const useTransactions = () => {
   const { token } = useAuth();
