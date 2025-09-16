@@ -5,7 +5,7 @@ import IncomePanel from "./IncomePanel";
 export const BalanceList: React.FC = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="flex md:grid md:grid-cols-3 md:gap-4 gap-4 mb-3">
         <BalancePanel />
         <IncomePanel />
         <ExpensePanel />

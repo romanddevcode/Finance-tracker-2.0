@@ -1,8 +1,8 @@
-import TransactionsList from "../Transactions/TransactionsList";
+import TransactionsList from "../features/Transactions/TransactionsList";
 
 export const RecentTransactionGraph: React.FC = () => {
   return (
-    <div className="bg-secondary p-4 rounded-lg shadow">
+    <div className="mb-6">
       <TransactionsList />
     </div>
   );

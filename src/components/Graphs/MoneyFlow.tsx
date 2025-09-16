@@ -1,9 +1,9 @@
 import React from "react";
-import IncomeGraph from "../Anlaytics/IncomeGraph";
-import { useAnalyticsData } from "../../hooks/useAnalyticsData";
-import { useTransactions } from "../../hooks/useTransactions";
+import IncomeGraph from "../features/Anlaytics/IncomeGraph";
+import { useAnalyticsData } from "../features/Anlaytics/hooks/useAnalyticsData";
+import { useTransactions } from "../features/Transactions/hooks/useTransactions";
 import { useTranslation } from "react-i18next";
-import { usePeriodStore } from "../../store/periodStore";
+import { usePeriodStore } from "../../services/store/periodStore";
 
 export const MoneyFlow: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
@@ -16,12 +16,10 @@ export const MoneyFlow: React.FC = () => {
     period
   );
   return (
-    <div className="bg-secondary p-4 rounded-lg shadow">
-      <IncomeGraph
-        name={`${t("income_by_date")} (${t(period)})`}
-        data={incomeByDate_StackedData_RAW}
-      />
-    </div>
+    <IncomeGraph
+      name={`${t("income_by_date")} (${t(period)})`}
+      data={incomeByDate_StackedData_RAW}
+    />
   );
 };
 

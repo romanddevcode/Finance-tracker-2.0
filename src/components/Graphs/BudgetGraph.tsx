@@ -1,8 +1,8 @@
-import BudgetLimitMain from "../Budget/BudgetLimitMain";
+import BudgetLimitMain from "../features/Budget/BudgetLimitMain";
 
 export const BudgetGraph: React.FC = () => {
   return (
-    <div className="bg-secondary p-4 rounded-lg shadow text-center ">
+    <div className="text-center">
       <BudgetLimitMain />
     </div>
   );

@@ -1,5 +1,5 @@
 import { db } from "../db/db";
-import type { SettingsLimit } from "../types/settingsLimit";
+import type { SettingsLimit } from "../components/features/Budget/types/settingsLimit";
 
 export const getBudgetLimitLocal = async (): Promise<SettingsLimit | null> => {
   const settingsId = await db.settingsLimit.get("budgetLimit");

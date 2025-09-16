@@ -1,4 +1,4 @@
-import type { Transaction } from "../types/transactionInterface";
+import type { Transaction } from "../components/features/Transactions/types/transactionInterface";
 import type { Period } from "../types/dateControl";
 
 const filterByPeriod = (tx: Transaction, period: Period, now = new Date()) => {

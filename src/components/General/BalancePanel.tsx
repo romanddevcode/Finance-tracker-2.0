@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { useCurrencyStore } from "../../store/currencyStore";
-import { useTransactions } from "../../hooks/useTransactions";
+import { useCurrencyStore } from "../../services/store/currencyStore";
+import { useTransactions } from "../features/Transactions/hooks/useTransactions";
 import { getTransactionsStats } from "../../utils/transactionsStats";
 
 export const BalancePanel: React.FC = () => {
@@ -9,10 +9,10 @@ export const BalancePanel: React.FC = () => {
   const { t } = useTranslation("dashboard");
   const { balance } = getTransactionsStats(transactions);
   return (
-    <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
-      <h3 className="text-lg font-medium mb-2">{t("balance_panel")}</h3>
-      <p className="text-2xl font-bold">
-        {balance} {selectedCurrency}
+    <div className="bg-secondary md:w-full text-center lg:text-left  md:text-2xl text-xl text-textBase p-4 rounded-lg shadow">
+      <h3 className="font-bold mb-2">{t("balance_panel")}</h3>
+      <p className="font-medium">
+        {balance.toFixed(2)} {selectedCurrency}
       </p>
     </div>
   );

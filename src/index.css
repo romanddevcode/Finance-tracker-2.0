@@ -1,33 +1,36 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-bgBase: #f5f7fa; /* светлый, почти белый */
-  --color-textBase: #1b1c1f; /* очень тёмный серый */
+  --color-bgBase: #f5f7fa;
+  --color-textBase: #1b1c1f;
   --color-textBaseHoverSidebar: #ffffff;
-  --color-secondary: #ffffff; /* карточки/вторичный фон */
-  --color-primary: oklch(62.7% 0.265 303.9); /* фиолетовый */
-  --color-income: #28c76f; /* мягкий зелёный */
-  --color-expense: #ea5455; /* яркий, но не кислотный красный */
-  --color-sidebar: #ece7f6; /* светлый фиолетово-серый */
+  --color-secondary: #ffffff;
+  --color-primary: oklch(62.7% 0.265 303.9);
+  --color-income: #28c76f;
+  --color-expense: #ea5455;
+  --color-sidebar: #ece7f6;
   --color-goalBar: oklch(62.7% 0.265 303.9);
 }
 
 .dark {
-  --color-bgBase: #1e1e2f; /* почти чёрный, но не глухой */
-  --color-secondary: #2a2a40; /* вторичный блок/карточки */
+  --color-bgBase: #1e1e2f;
+  --color-secondary: #2a2a40;
   --color-textBase: #f5f5f5;
   --color-textBaseHoverSidebar: #ffffff;
-  --color-primary: oklch(62.7% 0.265 303.9); /* тот же фиолетовый, для связки */
+  --color-primary: oklch(62.7% 0.265 303.9);
   --color-income: #28c76f;
   --color-expense: #ea5455;
-  --color-sidebar: #29253d; /* sidebar в тоне secondary */
+  --color-sidebar: #29253d;
   --color-goalBar: oklch(72.7% 0.265 303.9);
-}
 
-@layer base {
-  svg:focus,
-  g:focus,
-  rect:focus {
-    outline: none !important;
+  @layer base {
+    svg:focus,
+    g:focus,
+    rect:focus {
+      outline: none !important;
+    }
   }
 }
