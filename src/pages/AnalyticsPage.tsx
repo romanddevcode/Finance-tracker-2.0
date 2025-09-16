@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTransactions } from "../features/transactions/hooks/useTransactions";
 import Sidebar from "../features/transactions/components/sidebar";
 import { useAnalyticsData } from "../features/transactions/hooks/useAnalyticsData";
 import IncomeGraph from "../features/transactions/components/AnlyticsComp/IncomeGraph";
 import ExpenseGraph from "../features/transactions/components/AnlyticsComp/ExpenseGraph";
 import { useTranslation } from "react-i18next";
+import { periodStore } from "../store/periodStore";
 
-const Analytics: React.FC = () => {
+const AnalyticsPage: React.FC = () => {
   const { data: transactions = [] } = useTransactions();
-  const [period, setPeriod] = useState<"week" | "month" | "year">("month");
+  const { period, setPeriod } = periodStore();
 
   const { t } = useTranslation("analytics");
 
-  const { incomeByDateData, expenseByDateStackedData, allCategories } =
-    useAnalyticsData(transactions, period);
+  const {
+    incomeByDate_StackedData_RAW,
+    expenseByDateAndCategory_StackedData_RAW,
+    allCategories,
+  } = useAnalyticsData(transactions, period);
 
   return (
     <div className="min-h-screen bg-bgBase flex flex-col  sm:flex-row transition">
@@ -25,9 +29,7 @@ const Analytics: React.FC = () => {
           </h1>
           <select
             value={period}
-            onChange={(e) =>
-              setPeriod(e.target.value as "week" | "month" | "year")
-            }
+            onChange={(e) => setPeriod(e.target.value)}
             className="border p-2 rounded bg-secondary text-textBase"
           >
             <option value="week">{t("week")}</option>
@@ -36,10 +38,13 @@ const Analytics: React.FC = () => {
           </select>
         </div>
         <div className="px-4 sm:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <IncomeGraph name={t("income_by_date")} data={incomeByDateData} />
+          <IncomeGraph
+            name={`${t("income_by_date")} (${t(period)})`}
+            data={incomeByDate_StackedData_RAW}
+          />
           <ExpenseGraph
-            name={t("expenses_by_date_and_category")}
-            data={expenseByDateStackedData}
+            name={`${t("expenses_by_date_and_category")} (${t(period)})`}
+            data={expenseByDateAndCategory_StackedData_RAW}
             categories={allCategories}
           />
         </div>
@@ -48,4 +53,4 @@ const Analytics: React.FC = () => {
   );
 };
 
-export default Analytics;
+export default AnalyticsPage;

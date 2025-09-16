@@ -9,10 +9,7 @@ const TransactionsPage: React.FC = () => {
     <div className="min-h-screen bg-bgBase flex flex-col sm:flex-row transition">
       <Sidebar />
       <div className="py-6 px-4 sm:px-0 w-full mx-auto sm:mx-40">
-        {/* Главная */}
         <TransactionsMain />
-
-        {/* Список */}
         <TransactionsList />
       </div>
     </div>

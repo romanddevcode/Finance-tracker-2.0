@@ -9,13 +9,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-interface GoalGraphProps {
-  data: { targetAmount: number; currentAmount: number; name: string }[];
-}
+import type { GoalGraphProps } from "../../types/goalsGraphsInterface";
 
 export const GoalGraph = ({ data }: GoalGraphProps) => {
-  console.log("GoalGraph data: ", data);
   const { t } = useTranslation("goals");
 
   return (
@@ -34,7 +30,7 @@ export const GoalGraph = ({ data }: GoalGraphProps) => {
         />
         <Legend />
         <Bar
-          name={t("current_progress")}
+          name={`${t("current_progress")} (${data[0].currency})`}
           dataKey="currentAmount"
           fill="var(--color-income)"
           radius={[4, 4, 0, 0]}

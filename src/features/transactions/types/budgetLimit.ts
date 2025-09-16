@@ -1,5 +1,6 @@
-export interface Settings {
-  id: string; // например, 'budgetLimit'
-  limit?: number;
-  isLimitActive?: boolean;
+export interface SettingsLimit {
+  id: string | number;
+  value: number;
+  currency: string;
+  isActivated: boolean;
 }

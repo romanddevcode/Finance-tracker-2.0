@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/renderWithProviders";
-import Budget from "../../../../pages/Budget";
+import BudgetPage from "../../../../pages/BudgetPage";
 
 vi.mock("../../hooks/useTransactions", () => ({
   useTransactions: () => ({
@@ -30,7 +30,7 @@ beforeEach(() => {
 
 describe("Budget", () => {
   it("should render the Budget component", async () => {
-    renderWithProviders(<Budget />, {
+    renderWithProviders(<BudgetPage />, {
       withAuth: true,
     });
 
@@ -39,7 +39,7 @@ describe("Budget", () => {
   it("should render the BudgetLimitMain component", async () => {
     const user = userEvent.setup();
 
-    renderWithProviders(<Budget />, {
+    renderWithProviders(<BudgetPage />, {
       withAuth: true,
     });
 

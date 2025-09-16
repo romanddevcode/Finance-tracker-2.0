@@ -8,7 +8,8 @@
   "balance_panel": "Баланс",
   "income_panel": "Дохід",
   "expense_panel": "Витрати",
-  "income_by_date": "Дохід по датам за ",
-  "week": "тиждень",
-  "month": "місяць"
+  "income_by_date": "Дохід по датам",
+  "week": "Тиждень",
+  "month": "Місяць",
+  "year": "Рік"
 }

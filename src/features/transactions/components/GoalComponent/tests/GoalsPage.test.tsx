@@ -10,7 +10,7 @@ let mockGoals = [
     title: "Test Goal 1",
     targetAmount: 1000,
     currentAmount: 500,
-    progress: 50,
+    currency: "EUR",
   },
 ];
 
@@ -61,7 +61,7 @@ afterEach(() => {
       title: "Test Goal 1",
       targetAmount: 1000,
       currentAmount: 500,
-      progress: 50,
+      currency: "EUR",
     },
   ];
 });

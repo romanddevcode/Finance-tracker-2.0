@@ -8,26 +8,28 @@ export const useGoals = () => {
   const { token } = useAuth();
 
   return useQuery<Goal[]>({
-    queryKey: ["goals"],
+    queryKey: token ? ["goals", "server"] : ["goals", "local"],
     queryFn: async () => {
-      if (!token && !navigator.onLine) return await getLocalGoals();
-
-      try {
-        const res = await API.get("/api/goals");
-        console.log("GOALS from server:", res.data);
-        return (res.data as any[]).map((g) => ({
-          id: g._id,
+      if (token && navigator.onLine) {
+        const { data: res } = await API.get("/api/goals");
+        if (!res) throw new Error("No goals found");
+        const convertedDate = res.map((g: Goal) => ({
+          currency: g.currency,
+          currentAmount: g.currentAmount,
+          id: g.id,
           title: g.title,
           targetAmount: g.targetAmount,
-          currentAmount: g.currentAmount,
-          progress: g.progress,
         }));
-      } catch (error) {
-        console.warn("Error loading goals from server. Using Dexie:", error);
+
+        return convertedDate;
+      } else {
         return await getLocalGoals();
       }
     },
+
     enabled: token !== undefined,
-    initialData: [],
+    staleTime: 1000 * 60 * 60,
+    refetchInterval: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
   });
 };

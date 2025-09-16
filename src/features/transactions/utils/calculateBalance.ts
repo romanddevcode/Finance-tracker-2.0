@@ -8,9 +8,6 @@ export const getTransactionsStats = (transactions: Transaction[]) => {
   const { selectedCurrency } = useCurrencyStore();
   const { data: rates } = useExchangeRates();
 
-  // console.log("selectedCurrency", selectedCurrency);
-  // console.log("rates", rates);
-
   const stats = useMemo(() => {
     if (!rates || !transactions.length)
       return {
@@ -23,18 +20,14 @@ export const getTransactionsStats = (transactions: Transaction[]) => {
     let totalExpense = 0;
 
     for (const tx of transactions) {
-      const convertedAmount = currencyConventor({
-        amount: tx.amount,
-        fromCurrency: tx.currency,
-        toCurrency: selectedCurrency,
-        rates,
-      });
-
-      // console.log("amount", tx.amount, typeof tx.amount);
-      // console.log("convertedAmount", convertedAmount);
-      // console.log("fromCurrency", tx.currency);
-      // console.log("toCurrency", selectedCurrency);
-      // console.log("rates", rates);
+      const convertedAmount = Number(
+        currencyConventor({
+          amount: tx.amount,
+          fromCurrency: tx.currency,
+          toCurrency: selectedCurrency,
+          rates,
+        }).toFixed(2)
+      );
 
       if (tx.type === "income") {
         totalIncome += convertedAmount;

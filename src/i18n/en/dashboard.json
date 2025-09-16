@@ -8,7 +8,8 @@
   "balance_panel": "Balance",
   "income_panel": "Income",
   "expense_panel": "Expenses",
-  "income_by_date": "Income by date for ",
-  "week": "week",
-  "month": "month"
+  "income_by_date": "Income by date",
+  "week": "Week",
+  "month": "Month",
+  "year": "Year"
 }

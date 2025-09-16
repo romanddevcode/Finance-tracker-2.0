@@ -1,96 +1,77 @@
 import { useMemo } from "react";
+import { useCurrencyStore } from "../../../store/currencyTypeControl";
+import { useExchangeRates } from "../hooks/useExchangeRates";
+import { currencyConventor } from "../utils/currencyConventor";
+import filterByPeriod from "../utils/filterByPeriod";
 import type { Transaction } from "../types/transactionInterface";
-
-type Period = "week" | "month" | "year";
-
-interface RechartsIncomeEntry {
-  name: string;
-  income: number;
-}
-
-interface RechartsExpenseEntry {
-  name: string;
-  [category: string]: number | string;
-}
+import type { Period } from "../types/dateControl";
+import type { AccamulatedData } from "../types/analyticsDataInterface";
 
 export const useAnalyticsData = (
   transactions: Transaction[],
   period: Period
 ) => {
-  const now = new Date();
-
-  const filterByPeriod = (tx: Transaction) => {
-    const txDate = new Date(tx.date);
-    if (period === "week") {
-      const startOfWeek = new Date(now);
-      startOfWeek.setDate(now.getDate() - now.getDay());
-      startOfWeek.setHours(0, 0, 0, 0);
-      const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(startOfWeek.getDate() + 7);
-      return txDate >= startOfWeek && txDate < endOfWeek;
-    } else if (period === "month") {
-      return (
-        txDate.getMonth() === now.getMonth() &&
-        txDate.getFullYear() === now.getFullYear()
-      );
-    } else if (period === "year") {
-      return txDate.getFullYear() === now.getFullYear();
-    }
-    return true;
-  };
+  const { selectedCurrency } = useCurrencyStore();
+  const { data: rates } = useExchangeRates();
 
   const result = useMemo(() => {
-    const filtered = transactions.filter(filterByPeriod);
-    const incomeData = filtered.filter((tx) => tx.type === "income");
-    const expenseData = filtered.filter((tx) => tx.type === "expense");
+    const initialAcc: AccamulatedData = {
+      incomeByDate: {},
+      expenseByDateAndCategory: {},
+      allCategories: new Set(),
+      allDates: new Set(),
+    };
 
-    const incomeByDate = incomeData.reduce<Record<string, number>>(
-      (acc, tx) => {
-        const date = tx.date;
-        acc[date] = (acc[date] || 0) + tx.amount;
-        return acc;
-      },
-      {}
-    );
+    if (!rates || !transactions.length) {
+      return {
+        incomeByDate_StackedData_RAW: {},
+        expenseByDateAndCategory_StackedData_RAW: {},
+        allDates: [],
+        allCategories: [],
+      };
+    }
 
-    const expenseByDateAndCategory = expenseData.reduce<
-      Record<string, Record<string, number>>
-    >((acc, tx) => {
+    const filtered = transactions.filter((tx) => filterByPeriod(tx, period));
+
+    const stackedData = filtered.reduce((acc, tx) => {
       const date = tx.date;
-      const category = tx.category || "Other";
-      if (!acc[date]) acc[date] = {};
-      acc[date][category] = (acc[date][category] || 0) + tx.amount;
-      return acc;
-    }, {});
+      acc.allDates.add(date);
 
-    const allCategories: string[] = Array.from(
-      new Set(expenseData.map((tx) => tx.category || "Other"))
-    );
+      const convertedAmount = Number(
+        currencyConventor({
+          amount: tx.amount,
+          fromCurrency: tx.currency,
+          toCurrency: selectedCurrency,
+          rates,
+        }).toFixed(2)
+      );
 
-    const allDates = Array.from(
-      new Set(Object.keys(expenseByDateAndCategory))
-    ).sort();
+      if (tx.type === "income") {
+        acc.incomeByDate[date] =
+          (acc.incomeByDate[date] || 0) + convertedAmount;
+      } else if (tx.type === "expense") {
+        const category = tx.category || "Other";
+        acc.allCategories.add(category);
 
-    const incomeByDateData: RechartsIncomeEntry[] = Object.entries(
-      incomeByDate
-    ).map(([date, amount]) => ({
-      name: date,
-      income: amount,
-    }));
-
-    const expenseByDateStackedData: RechartsExpenseEntry[] = allDates.map(
-      (date) => {
-        const entry: RechartsExpenseEntry = { name: date };
-        allCategories.forEach((category) => {
-          entry[category] = expenseByDateAndCategory[date]?.[category] || 0;
-        });
-        return entry;
+        if (!acc.expenseByDateAndCategory[date])
+          acc.expenseByDateAndCategory[date] = {};
+        acc.expenseByDateAndCategory[date][category] =
+          (acc.expenseByDateAndCategory[date][category] || 0) + convertedAmount;
       }
-    );
+
+      return acc;
+    }, initialAcc);
+
+    const allCategories = Array.from(stackedData.allCategories);
+
+    const allDates = Array.from(stackedData.allDates).sort(
+      () => new Date().getTime() - new Date().getTime()
+    ); //Sort dates from newest to oldest
 
     return {
-      incomeByDateData,
-      expenseByDateStackedData,
+      incomeByDate_StackedData_RAW: stackedData.incomeByDate,
+      expenseByDateAndCategory_StackedData_RAW:
+        stackedData.expenseByDateAndCategory,
       allDates,
       allCategories,
     };

@@ -16,15 +16,11 @@ export const TransactionsMain: React.FC = () => {
     category: "Products",
     date: new Date().toISOString().slice(0, 10),
     description: "",
-    isSynced: 0,
   });
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (formData.amount <= 0) {
-      alert("Сума має бути більшою за 0!");
-      return;
-    }
+    if (formData.amount <= 0) return;
 
     const newTransaction: Transaction = {
       ...formData,
@@ -40,11 +36,10 @@ export const TransactionsMain: React.FC = () => {
     setFormData({
       amount: 0,
       currency: "EUR",
-      type: "expense",
-      category: "Products",
+      type: formData.type,
+      category: formData.category,
       date: new Date().toISOString().slice(0, 10),
       description: "",
-      isSynced: 0,
     });
   };
 
@@ -163,9 +158,10 @@ export const TransactionsMain: React.FC = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
+              className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2 min-h-20 resize-none"
               placeholder={t("description_placeholder")}
               rows={3}
+              maxLength={60}
             />
           </div>
         </div>

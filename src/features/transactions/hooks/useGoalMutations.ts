@@ -11,17 +11,41 @@ import { useAuth } from "../auth/AuthContext";
 export const useAddGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const queryKeyHandler =
+    token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
   return useMutation({
     mutationFn: async (goal: Goal) => {
-      if (token) {
-        await API.post("/api/goals", goal);
+      if (token && navigator.onLine) {
+        const { data } = await API.post<Goal>("/api/goals", goal);
+        return data;
       } else {
-        await addLocalGoal(goal);
+        await addLocalGoal(goal).catch((error) => console.error(error));
       }
+      return goal;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async (newGoal) => {
+      await queryClient.cancelQueries({ queryKey: queryKeyHandler });
+      const previousGoals = queryClient.getQueryData<Goal[]>(queryKeyHandler);
+
+      queryClient.setQueryData<Goal[]>(queryKeyHandler, (old = []) => [
+        ...old,
+        newGoal,
+      ]);
+
+      return { previousGoals };
+    },
+    onError: (error, _newGoal, context) => {
+      if (context?.previousGoals) {
+        queryClient.setQueryData<Goal[]>(
+          queryKeyHandler,
+          context.previousGoals
+        );
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeyHandler });
     },
   });
 };
@@ -29,17 +53,47 @@ export const useAddGoal = () => {
 export const useUpdateGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const queryKeyHandler =
+    token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
-  return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<Goal> }) => {
-      if (token) {
-        await API.patch(`/api/goals/${id}`, data);
+  return useMutation<
+    Goal,
+    Error,
+    { id: string; data: Partial<Goal> },
+    { previousGoals?: Goal[] }
+  >({
+    mutationFn: async ({ id, data }) => {
+      if (token && navigator.onLine) {
+        const { data: updatedData } = await API.patch<Goal>(
+          `/api/goals/${id}`,
+          data
+        );
+        return updatedData;
       } else {
-        await updateLocalGoal(id, data);
+        await updateLocalGoal(id, data).catch((error) => console.error(error));
+        const oldGoal = queryClient
+          .getQueryData<Goal[]>(queryKeyHandler)
+          ?.find((g) => g.id === id);
+        return { ...oldGoal, ...data } as Goal;
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async ({ id, data }) => {
+      await queryClient.cancelQueries({ queryKey: queryKeyHandler });
+      const previousGoals = queryClient.getQueryData<Goal[]>(queryKeyHandler);
+
+      queryClient.setQueryData<Goal[]>(queryKeyHandler, (old = []) =>
+        old.map((g) => (g.id === id ? { ...g, ...data } : g))
+      );
+      return { previousGoals };
+    },
+    onError: (error, _variables, context) => {
+      if (context?.previousGoals) {
+        queryClient.setQueryData(queryKeyHandler, context.previousGoals);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeyHandler });
     },
   });
 };
@@ -47,17 +101,36 @@ export const useUpdateGoal = () => {
 export const useDeleteGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const queryKeyHandler =
+    token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
   return useMutation({
     mutationFn: async (id: string) => {
-      if (token) {
+      if (token && navigator.onLine) {
         await API.delete(`/api/goals/${id}`);
       } else {
-        await deleteLocalGoal(id);
+        await deleteLocalGoal(id).catch((error) => console.error(error));
       }
+      return id;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["goals"] });
+    onMutate: async (deletedId) => {
+      await queryClient.cancelQueries({ queryKey: queryKeyHandler });
+      const previousGoals = queryClient.getQueryData<Goal[]>(queryKeyHandler);
+
+      queryClient.setQueryData<Goal[]>(queryKeyHandler, (old = []) =>
+        old.filter((g) => g.id !== deletedId)
+      );
+
+      return { previousGoals };
+    },
+    onError: (error, _variables, context) => {
+      if (context?.previousGoals) {
+        queryClient.setQueryData(queryKeyHandler, context.previousGoals);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeyHandler });
     },
   });
 };
