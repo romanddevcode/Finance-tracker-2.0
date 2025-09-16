@@ -57,14 +57,14 @@ export const useAnalyticsData = (
       Record<string, Record<string, number>>
     >((acc, tx) => {
       const date = tx.date;
-      const category = tx.category || "Інше";
+      const category = tx.category || "Other";
       if (!acc[date]) acc[date] = {};
       acc[date][category] = (acc[date][category] || 0) + tx.amount;
       return acc;
     }, {});
 
     const allCategories: string[] = Array.from(
-      new Set(expenseData.map((tx) => tx.category || "Інше"))
+      new Set(expenseData.map((tx) => tx.category || "Other"))
     );
 
     const allDates = Array.from(

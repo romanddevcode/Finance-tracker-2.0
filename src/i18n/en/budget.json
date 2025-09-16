@@ -1,0 +1,9 @@
+{
+  "main_title": "Budget",
+  "balance": "Balance",
+  "limit": "Limit of expenses",
+  "liimit_placeholder": "Enter limit of expenses",
+  "enable_limit": "Enable limit of expenses",
+  "limit_warning": "Warning! You have exceeded the limit of expenses",
+  "all_expenses": "All expenses:"
+}

@@ -1,0 +1,12 @@
+{
+  "main_title": "Goals",
+  "new_goal": "Create new goal",
+  "goal_name": "Name",
+  "goal_amount": "Amount",
+  "add_new_goal": "Add goal",
+  "progress": "Progress: ",
+  "add_progress": "Add progress",
+  "delete_goal": "Delete",
+  "current_progress": "Achieved",
+  "current_goal": "Goal"
+}

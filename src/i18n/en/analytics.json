@@ -1,0 +1,15 @@
+{
+  "main_title": "Analytics",
+  "income_by_date": "Income by date",
+  "expenses_by_date_and_category": "Expense by date and category",
+  "week": "Week",
+  "month": "Month",
+  "year": "Year",
+  "income": "Income",
+  "categories": {
+    "Products": "Products",
+    "Transport": "Transport",
+    "Fun": "Fun",
+    "Other": "Other"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "main_title": "Аналітика",
+  "income_by_date": "Дохід за датами",
+  "expenses_by_date_and_category": "Витрати за датами та категоріями",
+  "week": "Тиждень",
+  "month": "Місяць",
+  "year": "Рік",
+  "income": "Дохід",
+  "categories": {
+    "Products": "Продукти",
+    "Transport": "Транспорт",
+    "Fun": "Розваги",
+    "Other": "Інше"
+  }
+}
