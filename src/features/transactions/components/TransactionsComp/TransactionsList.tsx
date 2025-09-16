@@ -3,10 +3,13 @@ import { getTransactionsStats } from "../../utils/calculateBalance";
 import { useTransactions } from "../../hooks/useTransactions";
 import type { Transaction } from "../../types/transactionInterface";
 import { useTranslation } from "react-i18next";
+import { useCurrencyStore } from "../../../../store/currencyTypeControl";
 
 export const TransactionsList: React.FC = () => {
   const { data: transactions = [], isLoading } = useTransactions();
   const { balance } = getTransactionsStats(transactions);
+
+  const { selectedCurrency, setCurrency } = useCurrencyStore();
 
   const { t: tTransactions } = useTranslation("transactions");
   const { t: tAnalytics } = useTranslation("analytics");
@@ -23,8 +26,24 @@ export const TransactionsList: React.FC = () => {
         {tTransactions("list_of_transactions")}
       </h2>
       <p className="text-lg mb-4">
-        {tTransactions("current_balance")} {balance.toFixed(2)} грн
+        {tTransactions("current_balance")} {balance.toFixed(2)}{" "}
+        {selectedCurrency}
       </p>
+      <select
+        name="balanceCurrency"
+        value={selectedCurrency}
+        onChange={(e) => setCurrency(e.target.value)}
+      >
+        <option value="EUR" className="bg-secondary">
+          EUR
+        </option>
+        <option value="USD" className="bg-secondary">
+          USD
+        </option>
+        <option value="UAH" className="bg-secondary">
+          UAH
+        </option>
+      </select>
 
       {isLoading ? (
         <p>{tTransactions("loading")}</p>
@@ -74,7 +93,8 @@ export const TransactionsList: React.FC = () => {
                     tx.type === "income" ? "text-income" : "text-expense"
                   }`}
                 >
-                  {tx.type === "income" ? "+" : "-"} {tx.amount.toFixed(2)} грн
+                  {tx.type === "income" ? "+" : "-"} {tx.amount.toFixed(2)}{" "}
+                  {tx.currency}
                 </span>
               </div>
 

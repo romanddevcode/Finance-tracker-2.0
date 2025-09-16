@@ -1,7 +1,9 @@
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+
+import { defineConfig as defineVitestConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [
@@ -32,4 +34,9 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.ts",
+  },
 });

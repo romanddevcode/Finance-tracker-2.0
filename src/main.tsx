@@ -44,6 +44,7 @@ const App = () => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <I18nextProvider i18n={i18n}>
         <AuthProvider>
           <App />

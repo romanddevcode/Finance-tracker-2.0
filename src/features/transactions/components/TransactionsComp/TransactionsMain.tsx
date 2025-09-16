@@ -11,6 +11,7 @@ export const TransactionsMain: React.FC = () => {
   const [formData, setFormData] = useState<Transaction>({
     id: "",
     amount: 0,
+    currency: "EUR",
     type: "expense",
     category: "Products",
     date: new Date().toISOString().slice(0, 10),
@@ -38,6 +39,7 @@ export const TransactionsMain: React.FC = () => {
 
     setFormData({
       amount: 0,
+      currency: "EUR",
       type: "expense",
       category: "Products",
       date: new Date().toISOString().slice(0, 10),
@@ -57,6 +59,7 @@ export const TransactionsMain: React.FC = () => {
       [name]: name === "amount" ? parseFloat(value) : value,
     }));
   };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
@@ -72,16 +75,31 @@ export const TransactionsMain: React.FC = () => {
           <div>
             <label className="block text-sm font-medium  mb-1">
               {t("summ")}
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount || ""}
+                onChange={handleChange}
+                className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
+                placeholder={t("summ_placeholder")}
+                required
+              />
+              <select
+                name="currency"
+                value={formData.currency}
+                onChange={handleChange}
+              >
+                <option value="EUR" className="bg-secondary">
+                  EUR
+                </option>
+                <option value="USD" className="bg-secondary">
+                  USD
+                </option>
+                <option value="UAH" className="bg-secondary">
+                  UAH
+                </option>
+              </select>
             </label>
-            <input
-              type="number"
-              name="amount"
-              value={formData.amount || ""}
-              onChange={handleChange}
-              className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
-              placeholder={t("summ_placeholder")}
-              required
-            />
           </div>
           <div>
             <label className="block text-sm font-medium  mb-1">

@@ -11,7 +11,8 @@ class FinanceDB extends Dexie {
   constructor() {
     super("FinanceDB");
     this.version(1).stores({
-      transactions: "++id, type, amount, date, description, category, isSynced",
+      transactions:
+        "++id, type, amount, currency, date, description, category, isSynced",
       settings: "&id",
       goals: "&id, title, targetAmount, currentAmount",
     });

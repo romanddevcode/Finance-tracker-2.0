@@ -43,7 +43,7 @@ export const useBudgetLimit = (totalExpense: number) => {
   });
 
   const [limit, setLimit] = useState<number | null>(null);
-  const [isLimitActive, setIsLimitActive] = useState<boolean>(true);
+  const [isLimitActive, setIsLimitActive] = useState<boolean>(false);
 
   useEffect(() => {
     if (data) {
