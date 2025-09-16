@@ -75,10 +75,6 @@ export const TransactionsMain: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
-        {t("main_title")}
-      </h1>
-
       {errorMessagePopup && (
         <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
       )}
@@ -86,10 +82,10 @@ export const TransactionsMain: React.FC = () => {
       {warningMessage && (
         <WarningPopup key={warningMessage} warningMessage={warningMessage} />
       )}
-      {/* Форма */}
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="bg-secondary text-textBase p-6 rounded-lg shadow-md mb-6">
-          <h2 className="text-xl font-semibold mb-4">
+        <div className="bg-secondary  text-textBase p-6 rounded-lg shadow-md mb-3">
+          <h2 className="font-bold mb-4 lg:text-2xl text-xl">
             {t("new_transaction_add")}
           </h2>
           {errors.amount && (
@@ -97,7 +93,7 @@ export const TransactionsMain: React.FC = () => {
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium  mb-1">
+              <label className="block font-medium  mb-1">
                 {t("summ")}
 
                 <input
@@ -122,9 +118,7 @@ export const TransactionsMain: React.FC = () => {
               </label>
             </div>
             <div>
-              <label className="block text-sm font-medium  mb-1">
-                {t("type")}
-              </label>
+              <label className="block font-medium  mb-1">{t("type")}</label>
               <select
                 {...register("type")}
                 className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
@@ -138,9 +132,7 @@ export const TransactionsMain: React.FC = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium  mb-1">
-                {t("category")}
-              </label>
+              <label className="block font-medium  mb-1">{t("category")}</label>
               <select
                 {...register("category")}
                 className="w-full rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
@@ -160,9 +152,7 @@ export const TransactionsMain: React.FC = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium  mb-1">
-                {t("date")}
-              </label>
+              <label className="block font-medium  mb-1">{t("date")}</label>
               <input
                 type="date"
                 {...register("date")}
@@ -170,7 +160,7 @@ export const TransactionsMain: React.FC = () => {
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium  mb-1">
+              <label className="block font-medium mb-1">
                 {t("description")}
               </label>
               <textarea

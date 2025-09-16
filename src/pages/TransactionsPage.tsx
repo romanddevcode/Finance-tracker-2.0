@@ -1,18 +1,23 @@
 import React from "react";
 import Sidebar from "../components/General/Sidebar";
-
 import TransactionsList from "../components/features/Transactions/TransactionsList";
 import TransactionsMain from "../components/features/Transactions/TransactionsMain";
+import { useTranslation } from "react-i18next";
 
 const TransactionsPage: React.FC = () => {
+  const { t } = useTranslation("transactions");
+
   return (
-    <div className="min-h-screen bg-bgBase flex flex-col sm:flex-row transition">
-      <Sidebar />
-      <div className="py-6 px-4 sm:px-0 w-full mx-auto sm:mx-40">
+    <>
+      <h1 className="text-2xl font-bold mb-6 text-center lg:text-left text-primary">
+        {t("main_title")}
+      </h1>
+
+      <div className="flex flex-col gap-6">
         <TransactionsMain />
         <TransactionsList />
       </div>
-    </div>
+    </>
   );
 };
 

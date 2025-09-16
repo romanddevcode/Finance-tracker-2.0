@@ -16,12 +16,10 @@ export const MoneyFlow: React.FC = () => {
     period
   );
   return (
-    <div className="bg-secondary p-4 rounded-lg shadow">
-      <IncomeGraph
-        name={`${t("income_by_date")} (${t(period)})`}
-        data={incomeByDate_StackedData_RAW}
-      />
-    </div>
+    <IncomeGraph
+      name={`${t("income_by_date")} (${t(period)})`}
+      data={incomeByDate_StackedData_RAW}
+    />
   );
 };
 

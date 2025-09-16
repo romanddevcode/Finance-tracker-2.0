@@ -26,5 +26,6 @@
   "type_in_list_expense": "Ausgaben",
   "type_in_list_income": "Einnahmen",
   "no_transactions": "Keine Transaktionen",
-  "loading": "Laden..."
+  "loading": "Laden...",
+  "select_currency": "Währung auswählen"
 }

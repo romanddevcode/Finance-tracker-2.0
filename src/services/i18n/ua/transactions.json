@@ -26,5 +26,6 @@
   "type_in_list_expense": "Витрати",
   "type_in_list_income": "Дохід",
   "no_transactions": "Немає транзакцій",
-  "loading": "Завантаження..."
+  "loading": "Завантаження...",
+  "select_currency": "Виберіть валюту"
 }

@@ -27,8 +27,8 @@ export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
   const properIncomeName = `${t("income")} (${selectedCurrency})`;
 
   return (
-    <div className="bg-secondary text-textBase p-4 rounded-lg shadow">
-      <h2 className="text-lg font-semibold mb-4">{name}</h2>
+    <div className="bg-secondary text-center md:text-left text-textBase pr-8 pl-4 py-4 rounded-lg shadow">
+      <h2 className="font-bold mb-4  lg:text-2xl text-xl">{name}</h2>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={incomeByDate_StackedData_CONVERTED}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -44,6 +44,7 @@ export const IncomeGraph = ({ data, name }: IncomeGraphProps) => {
           />
           <Legend />
           <Bar
+            className="text-base"
             name={properIncomeName}
             dataKey="income"
             fill="var(--color-income)"

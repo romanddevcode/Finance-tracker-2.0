@@ -141,80 +141,80 @@ export const BudgetLimitMain: React.FC = () => {
   }, [budgetLimitError, transactionsError, ratesError, mutation.error]);
 
   return (
-    <div className="bg-secondary text-textBase p-4 rounded-lg shadow mb-6">
-      <h3 className="text-lg font-medium mb-4">{t("limit")}</h3>
+    <div className="bg-secondary text-center md:text-left text-textBase p-4 rounded-lg shadow ">
+      <h2 className="font-bold mb-4 lg:text-2xl text-xl">{t("limit")}</h2>
 
       {errorMessagePopup && (
         <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
       )}
       {errors?.limit && (
-        <p className="text-red-500 text-sm duration-300 ease-in">
+        <p className="text-red-500 transition duration-300 ease-in">
           {errors.limit?.message}
         </p>
       )}
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col sm:flex-row gap-4"
-        >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col sm:flex-row justify-between items-center gap-4"
+      >
+        <div className="flex items-center gap-2">
           <input
             {...register("limit", { valueAsNumber: true })}
             type="number"
             min={1}
-            className="border p-2 rounded"
+            className="border p-2 rounded  text-base"
             disabled={!watch("isActivated")}
           />
-          <select {...register("currency")} className="border p-2 rounded">
+          <select
+            {...register("currency")}
+            className="border p-2 rounded  text-base"
+          >
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
             <option value="UAH">UAH</option>
           </select>
+          <Controller
+            name="isActivated"
+            control={control}
+            render={({ field }) => (
+              <label className="flex justify-center items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={field.value}
+                  disabled={mutation.isPending}
+                  onChange={async (e) => {
+                    const newValue = e.target.checked;
+                    field.onChange(newValue);
+                    toggleActivation(newValue);
+                  }}
+                />
+                <span>{t("enable_limit")}</span>
+              </label>
+            )}
+          />
+        </div>
 
-          <label className="flex items-center gap-2">
-            <Controller
-              name="isActivated"
-              control={control}
-              render={({ field }) => (
-                <label className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={field.value}
-                    disabled={mutation.isPending}
-                    onChange={async (e) => {
-                      const newValue = e.target.checked;
-                      field.onChange(newValue);
-                      toggleActivation(newValue);
-                    }}
-                  />
-                  <span>{t("enable_limit")}</span>
-                </label>
-              )}
-            />
-          </label>
-
-          {watch("isActivated") && (
-            <div className="flex gap-2">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-3 py-2 rounded"
-              >
-                {t("apply_limit")}
-              </button>
-              <button
-                type="button"
-                onClick={handleClear}
-                className="bg-red-500 text-white px-3 py-2 rounded"
-              >
-                {t("clear_limit")}
-              </button>
-            </div>
-          )}
-        </form>
-      </div>
+        {watch("isActivated") && (
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-3 py-2 rounded"
+            >
+              {t("apply_limit")}
+            </button>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="bg-red-500 text-white px-3 py-2 rounded"
+            >
+              {t("clear_limit")}
+            </button>
+          </div>
+        )}
+      </form>
 
       {isOverLimit && (
-        <p className="text-red-500 mt-2 font-semibold text-sm sm:text-base">
+        <p className="text-red-500 mt-2 font-semibold text-center">
           {t("limit_warning")}
         </p>
       )}

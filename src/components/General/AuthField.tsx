@@ -34,34 +34,30 @@ export const AuthField = () => {
   // Если пользователь залогинен
   if (token) {
     return (
-      <div className="absolute top-4 right-4 z-50">
-        <button
-          onClick={logout}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-        >
-          {t("button_logout")}
-        </button>
-      </div>
+      <button
+        onClick={logout}
+        className="bg-red-500  text-white z-20 px-4 py-2 rounded hover:bg-red-600 transition"
+      >
+        {t("button_logout")}
+      </button>
     );
   }
 
   // Если пользователь не залогинен и форма скрыта
   if (!showForm) {
     return (
-      <div className="absolute top-4 right-4 z-50">
-        <button
-          onClick={() => setShowForm(true)}
-          className="bg-primary text-white px-4 py-2 rounded hover:bg-purple-600 transition"
-        >
-          {t("button_login")}
-        </button>
-      </div>
+      <button
+        onClick={() => setShowForm(true)}
+        className="bg-primary text-white z-20 px-4 py-2 rounded hover:bg-purple-600 transition"
+      >
+        {t("button_login")}
+      </button>
     );
   }
 
   // Форма входа/регистрации
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-40">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
       <form
         onSubmit={handleSubmit}
         className="bg-bgBase p-6 rounded-lg shadow-md w-full max-w-sm relative"

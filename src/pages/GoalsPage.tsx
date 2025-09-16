@@ -9,17 +9,13 @@ const GoalsPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-bgBase text-textBase flex flex-col sm:flex-row">
-        <Sidebar />
-        <div className="py-6 pl-0 sm:pl-4 w-full  mx-auto sm:mx-40">
-          <div className="px-5 sm:px-0 gap-6">
-            <h1 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
-              {t("main_title")}
-            </h1>
-            <GoalsMain />
-            <GoalsList />
-          </div>
-        </div>
+      <h1 className="text-2xl font-bold mb-6 text-center lg:text-left text-primary">
+        {t("main_title")}
+      </h1>
+
+      <div className="flex flex-col gap-6">
+        <GoalsMain />
+        <GoalsList />
       </div>
     </>
   );

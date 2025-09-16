@@ -1,13 +1,21 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-type balanceStateLimit = {
+type BalanceStateLimit = {
   isOverLimit: boolean;
-  setIsOverLimit: (value: boolean) => void;
+  setIsOverLimit: (isOverLimit: boolean) => void;
 };
 
-export const useBalanceStateLimit = create<balanceStateLimit>((set) => ({
-  isOverLimit: false,
-  setIsOverLimit: (value) => set({ isOverLimit: value }),
-}));
+export const useBalanceStateLimit = create<BalanceStateLimit>()(
+  persist(
+    (set) => ({
+      isOverLimit: false,
+      setIsOverLimit: (value) => set({ isOverLimit: value }),
+    }),
+    {
+      name: "balanceStateLimit",
+    }
+  )
+);
 
 export default useBalanceStateLimit;
