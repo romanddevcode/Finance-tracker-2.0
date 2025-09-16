@@ -1,7 +1,7 @@
 import React from "react";
-import GoalsMain from "../features/transactions/components/GoalComponent/GoalsMain";
-import GoalsList from "../features/transactions/components/GoalComponent/GoalsList";
-import Sidebar from "../features/transactions/components/sidebar";
+import GoalsMain from "../components/Goal/GoalsMain";
+import GoalsList from "../components/Goal/GoalsList";
+import Sidebar from "../components/General/Sidebar";
 import { useTranslation } from "react-i18next";
 
 const GoalsPage: React.FC = () => {

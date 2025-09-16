@@ -8,12 +8,12 @@ import i18n from "./i18n";
 
 import "./index.css";
 
-import Dashboard from "./pages/Dashboards.tsx";
+import DashboardPage from "./pages/DashboardPage.tsx";
 import TransactionsPage from "./pages/TransactionsPage.tsx";
 import BudgetPage from "./pages/BudgetPage.tsx";
 import AnalyticsPage from "./pages/AnalyticsPage.tsx";
 import GoalsPage from "./pages/GoalsPage.tsx";
-import { AuthProvider } from "./features/transactions/auth/AuthContext.tsx";
+import { AuthProvider } from "./auth/AuthContext.tsx";
 import { I18nextProvider } from "react-i18next";
 
 const queryClient = new QueryClient();
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<DashboardPage />} />
         <Route path="/Budget" element={<BudgetPage />} />
         <Route path="/Analytics" element={<AnalyticsPage />} />
         <Route path="/Goals" element={<GoalsPage />} />
