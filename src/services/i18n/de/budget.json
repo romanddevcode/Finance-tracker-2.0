@@ -1,0 +1,9 @@
+{
+  "main_title": "Budget",
+  "balance": "Saldo",
+  "limit": "limiten der Ausgaben",
+  "limit_placeholder": "limiten eingeben",
+  "enable_limit": "limiten der Ausgaben aktivieren",
+  "limit_warning": "Warnung! Sie haben die limiten der Ausgaben ueberschritten",
+  "all_expenses": "Alle Ausgaben:"
+}
