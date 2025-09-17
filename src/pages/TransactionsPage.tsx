@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../components/General/Sidebar";
 import TransactionsList from "../components/features/Transactions/TransactionsList";
 import TransactionsMain from "../components/features/Transactions/TransactionsMain";
 import { useTranslation } from "react-i18next";

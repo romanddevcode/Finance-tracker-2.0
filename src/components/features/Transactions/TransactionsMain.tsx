@@ -8,24 +8,15 @@ import {
   type TransactionsFormValues,
 } from "../../../validations/transactionsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ErrorPopup from "../../General/ErrorPopup";
 import useBalanceStateLimit from "../../../services/store/balanceStateLimitStore";
-import WarningPopup from "../../General/WarningPopup";
+import { useNotificationStore } from "@/services/store/notificationStore";
 
 export const TransactionsMain: React.FC = () => {
   const addTransactionMutation = useAddTransaction();
-  const [errorMessagePopup, setErrorMessagePopup] = useState<string | null>(
-    null
-  );
   const [warningMessage, setWarningMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (addTransactionMutation.isError) {
-      setErrorMessagePopup(addTransactionMutation.error.message);
-    } else {
-      setErrorMessagePopup(null);
-    }
-  }, [addTransactionMutation.isError, addTransactionMutation.error]);
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
 
   const { isOverLimit } = useBalanceStateLimit();
 
@@ -73,16 +64,15 @@ export const TransactionsMain: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (warningMessage) {
+      addNotification("warning", t("warning_limit"));
+      setWarningMessage(null);
+    }
+  }, [warningMessage, addNotification]);
+
   return (
     <div>
-      {errorMessagePopup && (
-        <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
-      )}
-
-      {warningMessage && (
-        <WarningPopup key={warningMessage} warningMessage={warningMessage} />
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="bg-secondary  text-textBase p-6 rounded-lg shadow-md mb-3">
           <h2 className="font-bold mb-4 lg:text-2xl text-xl">

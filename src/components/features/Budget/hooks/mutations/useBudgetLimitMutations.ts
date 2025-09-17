@@ -3,10 +3,18 @@ import { useAuth } from "../../../../../auth/AuthContext";
 import type { SettingsLimit } from "../../types/settingsLimit";
 import API from "../../../../../services/api/axios";
 import { setBudgetLimitLocal } from "../../../../../services/budgetService";
+import { useNotificationStore } from "@/services/store/notificationStore";
+import { useTranslation } from "react-i18next";
 
 export const useSetBudgetLimit = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const { t } = useTranslation("query");
+
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
+
   const queryKeyHandler =
     token && navigator.onLine
       ? ["budgetLimit", "server"]
@@ -48,7 +56,11 @@ export const useSetBudgetLimit = () => {
           context.previousSettings
         );
       }
+      addNotification("error", t("budget_error"));
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("budget_add_success"));
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyHandler });

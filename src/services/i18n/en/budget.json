@@ -5,5 +5,7 @@
   "limit_placeholder": "Enter limit",
   "enable_limit": "Enable limit of expenses",
   "limit_warning": "Warning! You have exceeded the limit of expenses",
-  "all_expenses": "All expenses:"
+  "all_expenses": "All expenses:",
+  "apply_limit": "Apply limit",
+  "clear_limit": "Clear limit"
 }

@@ -1,10 +1,5 @@
 import React from "react";
-import Sidebar from "../components/General/Sidebar";
-import BalanceList from "../components/General/BalanceList";
 import MoneyFlow from "../components/Graphs/MoneyFlow";
-import { AuthField } from "../components/General/AuthField";
-import BudgetGraph from "../components/Graphs/BudgetGraph";
-import RecentTransactionGraph from "../components/Graphs/RecentTransactionGraph";
 import { useTranslation } from "react-i18next";
 import ExpensePanel from "../components/General/ExpensePanel";
 import IncomePanel from "../components/General/IncomePanel";

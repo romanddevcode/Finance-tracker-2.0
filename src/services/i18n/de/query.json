@@ -1,0 +1,14 @@
+{
+  "budget_add_success": "Limit der Ausgaben erfolgreich aktualisiert",
+  "budget_error": "Limit der Ausgaben konnte nicht aktualisiert oder hinzugefuegt werden",
+  "goal_add_success": "Ziel erfolgreich hinzugefuegt",
+  "goal_add_error": "Ziel konnte nicht hinzugefuegt werden",
+  "goal_updated_success": "Ziel erfolgreich aktualisiert",
+  "goal_updated_error": "Ziel konnte nicht aktualisiert werden",
+  "goal_delete_success": "Ziel erfolgreich geloescht",
+  "goal_delete_error": "Ziel konnte nicht geloescht werden",
+  "transaction_add_success": "Transaction erfolgreich hinzugefuegt",
+  "transaction_add_error": "Transaction konnte nicht hinzugefuegt werden",
+  "transaction_delete_success": "Transaction erfolgreich geloescht",
+  "transaction_delete_error": "Transaction konnte nicht geloescht werden"
+}

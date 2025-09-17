@@ -4,25 +4,12 @@ import { useTransactions } from "./hooks/useTransactions";
 import type { Transaction } from "./types/transactionInterface";
 import { useTranslation } from "react-i18next";
 import { useCurrencyStore } from "../../../services/store/currencyStore";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import TransactionCard from "./TransactionsCard";
-import ErrorPopup from "@/components/General/ErrorPopup";
 
 export const TransactionsList: React.FC = () => {
   const { data: transactions = [], isLoading, error } = useTransactions();
   const { balance } = getTransactionsStats(transactions);
-
-  const [errorMessagePopup, setErrorMessagePopup] = useState<string | null>(
-    null
-  );
-
-  useEffect(() => {
-    if (transactions.isError) {
-      setErrorMessagePopup(transactions.error.message);
-    } else {
-      setErrorMessagePopup(null);
-    }
-  }, [transactions.isError, transactions.error]);
 
   const { selectedCurrency, setCurrency } = useCurrencyStore();
 
@@ -44,9 +31,6 @@ export const TransactionsList: React.FC = () => {
 
   return (
     <div className="bg-secondary text-textBase p-6 mb-4 rounded-lg shadow-md text-center md:text-left">
-      {errorMessagePopup && (
-        <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
-      )}
       {error && (
         <p className="text-red-500 transition duration-300 ease-in">
           {error.message}
