@@ -11,30 +11,24 @@ import {
   type BudgetLimitFormValues,
 } from "../../../validations/budgetLimitSchema";
 import useBalanceStateLimit from "../../../services/store/balanceStateLimitStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { currencyConventor } from "../../../utils/currencyConventor";
 import { useCurrencyStore } from "../../../services/store/currencyStore";
 import { useExchangeRates } from "../../../hooks/useExchangeRates";
-import ErrorPopup from "../../General/ErrorPopup";
 
 export const BudgetLimitMain: React.FC = () => {
   const { t } = useTranslation("budget");
 
-  const [errorMessagePopup, setErrorMessagePopup] = useState<string | null>(
-    null
-  );
-
   const { selectedCurrency } = useCurrencyStore();
 
-  const { data: budgetLimit, error: budgetLimitError } = useBudgetLimit();
+  const { data: budgetLimit } = useBudgetLimit();
 
   const { isOverLimit, setIsOverLimit } = useBalanceStateLimit();
 
   const mutation = useSetBudgetLimit();
 
-  const { data: transactions = [], error: transactionsError } =
-    useTransactions();
-  const { data: rates, error: ratesError } = useExchangeRates();
+  const { data: transactions = [] } = useTransactions();
+  const { data: rates } = useExchangeRates();
   const { totalExpense } = getTransactionsStats(transactions);
 
   const {
@@ -127,26 +121,10 @@ export const BudgetLimitMain: React.FC = () => {
     }
   }, [budgetLimit]);
 
-  useEffect(() => {
-    let message: string | null = null;
-
-    if (budgetLimitError) message = budgetLimitError?.message;
-    else if (transactionsError) message = transactionsError?.message;
-    else if (ratesError) message = ratesError?.message;
-    else if (mutation.error) message = mutation.error?.message;
-
-    if (message) {
-      setErrorMessagePopup(message + Date.now());
-    }
-  }, [budgetLimitError, transactionsError, ratesError, mutation.error]);
-
   return (
     <div className="bg-secondary text-center md:text-left text-textBase p-4 rounded-lg shadow ">
       <h2 className="font-bold mb-4 lg:text-2xl text-xl">{t("limit")}</h2>
 
-      {errorMessagePopup && (
-        <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
-      )}
       {errors?.limit && (
         <p className="text-red-500 transition duration-300 ease-in">
           {errors.limit?.message}

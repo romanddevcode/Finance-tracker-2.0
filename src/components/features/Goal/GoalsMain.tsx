@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAddGoal } from "../Goal/hooks/mutations/useGoalMutations";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,13 +7,9 @@ import {
   goalsSchema,
   type GoalsFormValues,
 } from "../../../validations/goalsSchema";
-import ErrorPopup from "../../General/ErrorPopup";
 
 const GoalsMain: React.FC = () => {
   const addGoalMutation = useAddGoal();
-  const [errorMessagePopup, setErrorMessagePopup] = useState<string | null>(
-    null
-  );
 
   const {
     register,
@@ -28,14 +24,6 @@ const GoalsMain: React.FC = () => {
       currency: "EUR",
     },
   });
-
-  useEffect(() => {
-    if (addGoalMutation.isError) {
-      setErrorMessagePopup(addGoalMutation.error.message);
-    } else {
-      setErrorMessagePopup(null);
-    }
-  }, [addGoalMutation.isError, addGoalMutation.error]);
 
   const { t } = useTranslation("goals");
 
@@ -60,10 +48,6 @@ const GoalsMain: React.FC = () => {
 
   return (
     <div className="bg-secondary text-textBase p-4 flex flex-col items-center  lg:items-start rounded-lg shadow mb-6">
-      {errorMessagePopup && (
-        <ErrorPopup key={errorMessagePopup} errorMessage={errorMessagePopup} />
-      )}
-
       <h2 className="font-bold mb-4 lg:text-2xl text-xl">{t("new_goal")}</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}

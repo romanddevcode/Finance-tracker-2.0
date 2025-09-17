@@ -5,5 +5,7 @@
   "limit_placeholder": "Введіть ліміт",
   "enable_limit": "Увімкнути ліміт витрат",
   "limit_warning": "Попередження! Ви перевищили ліміт витрат",
-  "all_expenses": "Всі витрати:"
+  "all_expenses": "Всі витрати:",
+  "apply_limit": "Застосувати ліміт",
+  "clear_limit": "Очистити ліміт"
 }

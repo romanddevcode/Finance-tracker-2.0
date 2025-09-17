@@ -27,5 +27,6 @@
   "type_in_list_income": "Einnahmen",
   "no_transactions": "Keine Transaktionen",
   "loading": "Laden...",
-  "select_currency": "Währung auswählen"
+  "select_currency": "Währung auswählen",
+  "warning_limit": "Warnung! Sie haben die limiten der Ausgaben ueberschritten"
 }

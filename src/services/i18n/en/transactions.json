@@ -27,5 +27,6 @@
   "type_in_list_income": "Income",
   "no_transactions": "No transactions",
   "loading": "Loading...",
-  "select_currency": "Select currency"
+  "select_currency": "Select currency",
+  "warning_limit": "Warning! You have exceeded the limit of expenses"
 }

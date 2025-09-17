@@ -8,6 +8,7 @@ import enTransactions from "./en/transactions.json";
 import enGoals from "./en/goals.json";
 import enBudget from "./en/budget.json";
 import enLoginReg from "./en/loginReg.json";
+import enQuery from "./en/query.json";
 
 import uaAnalytics from "./ua/analytics.json";
 import uaDashboard from "./ua/dashboard.json";
@@ -15,6 +16,7 @@ import uaTransactions from "./ua/transactions.json";
 import uaGoals from "./ua/goals.json";
 import uaBudget from "./ua/budget.json";
 import uaLoginReg from "./ua/loginReg.json";
+import uaQuery from "./ua/query.json";
 
 import deAnalytics from "./de/analytics.json";
 import deDashboard from "./de/dashboard.json";
@@ -22,6 +24,7 @@ import deTransactions from "./de/transactions.json";
 import deGoals from "./de/goals.json";
 import deBudget from "./de/budget.json";
 import deLoginReg from "./de/loginReg.json";
+import deQuery from "./de/query.json";
 
 i18n
   .use(LanguageDetector)
@@ -39,7 +42,8 @@ i18n
       "goals",
       "transactions",
       "loginReg",
-    ], // какие namespaces мы хотим
+      "query",
+    ],
     defaultNS: "analytics",
     resources: {
       en: {
@@ -49,6 +53,7 @@ i18n
         goals: enGoals,
         transactions: enTransactions,
         loginReg: enLoginReg,
+        query: enQuery,
       },
       ua: {
         analytics: uaAnalytics,
@@ -57,6 +62,7 @@ i18n
         goals: uaGoals,
         transactions: uaTransactions,
         loginReg: uaLoginReg,
+        query: uaQuery,
       },
       de: {
         analytics: deAnalytics,
@@ -65,6 +71,7 @@ i18n
         goals: deGoals,
         transactions: deTransactions,
         loginReg: deLoginReg,
+        query: deQuery,
       },
     },
   });

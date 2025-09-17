@@ -5,5 +5,7 @@
   "limit_placeholder": "limiten eingeben",
   "enable_limit": "limiten der Ausgaben aktivieren",
   "limit_warning": "Warnung! Sie haben die limiten der Ausgaben ueberschritten",
-  "all_expenses": "Alle Ausgaben:"
+  "all_expenses": "Alle Ausgaben:",
+  "apply_limit": "limiten anwenden",
+  "clear_limit": "limiten loeschen"
 }

@@ -27,5 +27,6 @@
   "type_in_list_income": "Дохід",
   "no_transactions": "Немає транзакцій",
   "loading": "Завантаження...",
-  "select_currency": "Виберіть валюту"
+  "select_currency": "Виберіть валюту",
+  "warning_limit": "Попередження! Встановлено ліміт витрат"
 }

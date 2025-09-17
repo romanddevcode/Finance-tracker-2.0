@@ -11,9 +11,9 @@ import histogram from "../../assets/chart-histogram.svg?react";
 import coins from "../../assets/coins.svg?react";
 import dashboard from "../../assets/dashboard-panel.svg?react";
 import receipt from "../../assets/receipt.svg?react";
-import CurrencyToggle from "./CurrencyToggle";
-import ThemeToggle from "./ThemeToggle";
-import LangugaeToggle from "./LanguageToggle";
+import CurrencyToggle from "../../utils/CurrencyToggle";
+import ThemeToggle from "../../utils/ThemeToggle";
+import LangugaeToggle from "../../utils/LanguageToggle";
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
               {t("sidebar_main_title")}
             </h2>
           )}
-          <nav className="flex flex-col space-y-2">
+          <nav className={`flex flex-col space-y-2 ${isHovered ? "" : "mt-6"}`}>
             <SidebarLink
               to="/"
               icon={dashboard}

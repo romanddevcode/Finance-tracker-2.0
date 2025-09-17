@@ -1,5 +1,5 @@
 // components/ThemeToggle.tsx
-import { useThemeStore } from "../../services/store/themeStore";
+import { useThemeStore } from "../services/store/themeStore";
 import React from "react";
 
 interface ThemeToggleProps {

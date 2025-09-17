@@ -1,0 +1,14 @@
+{
+  "budget_add_success": "Встановлено ліміт витрат",
+  "budget_error": "Не вдалося змінити або додати ліміт витрат",
+  "goal_add_success": "Ціль успішно додано",
+  "goal_add_error": "Не вдалося додати ціль",
+  "goal_updated_success": "Ціль успішно оновлено",
+  "goal_updated_error": "Не вдалося оновити ціль",
+  "goal_delete_success": "Ціль успішно видалено",
+  "goal_delete_error": "Ціль не вдалося видалити",
+  "transaction_add_success": "Транзакція успішно додана",
+  "transaction_add_error": "Не вдалося додати транзакцію",
+  "transaction_delete_success": "Транзакція успішно видалена",
+  "transaction_delete_error": "Не вдалося видалити транзакцію"
+}

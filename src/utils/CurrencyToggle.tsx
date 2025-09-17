@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
-import { useCurrencyStore } from "../../services/store/currencyStore";
+import { useCurrencyStore } from "../services/store/currencyStore";
 
 const currencies = ["EUR", "USD", "UAH"];
 

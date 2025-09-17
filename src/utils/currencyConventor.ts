@@ -22,7 +22,6 @@ export function currencyConventor({
     return NaN;
   }
 
-  // перевести fromCurrency → USD → toCurrency
   const inUSD = amount / usdToFrom;
   const result = inUSD * usdToTo;
 

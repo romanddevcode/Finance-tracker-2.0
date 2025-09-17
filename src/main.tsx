@@ -15,9 +15,8 @@ import AnalyticsPage from "./pages/AnalyticsPage.tsx";
 import GoalsPage from "./pages/GoalsPage.tsx";
 import { AuthProvider } from "./auth/AuthContext.tsx";
 import { I18nextProvider } from "react-i18next";
-import SidebarMenuComponent from "./components/General/Sidebar.tsx";
 import Layout from "./components/General/Layout.tsx";
-import { LanguageProvider } from "./components/General/LanguageProvider.tsx";
+import { LanguageProvider } from "./utils/LanguageProvider.tsx";
 
 const queryClient = new QueryClient();
 

@@ -6,10 +6,17 @@ import {
 } from "../../../../../services/localTransactionsService";
 import type { Transaction } from "../../types/transactionInterface";
 import { useAuth } from "../../../../../auth/AuthContext";
+import { useNotificationStore } from "@/services/store/notificationStore";
+import { useTranslation } from "react-i18next";
 
 export const useAddTransaction = () => {
   const { token } = useAuth();
   const queryClient = useQueryClient();
+  const { t } = useTranslation("query");
+
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
 
   const queryKeyHandler =
     token && navigator.onLine
@@ -52,7 +59,12 @@ export const useAddTransaction = () => {
           context.previousTransactions
         );
       }
+      addNotification("error", t("transaction_add_error"));
+
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("transaction_add_success"));
     },
     onSettled: () =>
       queryClient.invalidateQueries({ queryKey: queryKeyHandler }),
@@ -62,6 +74,11 @@ export const useAddTransaction = () => {
 export const useDeleteTransaction = () => {
   const { token } = useAuth();
   const queryClient = useQueryClient();
+  const { t } = useTranslation("query");
+
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
 
   const queryKeyHandler =
     token && navigator.onLine
@@ -93,7 +110,11 @@ export const useDeleteTransaction = () => {
       if (context?.previousTransactions) {
         queryClient.setQueryData(queryKeyHandler, context.previousTransactions);
       }
+      addNotification("error", t("transaction_delete_error"));
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("transaction_delete_success"));
     },
     onSettled: () =>
       queryClient.invalidateQueries({ queryKey: queryKeyHandler }),

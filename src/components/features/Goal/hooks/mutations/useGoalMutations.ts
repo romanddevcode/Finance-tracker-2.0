@@ -7,10 +7,18 @@ import {
 } from "../../../../../services/goalService";
 import type { Goal } from "./../../types/goalsInterface";
 import { useAuth } from "../../../../../auth/AuthContext";
+import { useNotificationStore } from "@/services/store/notificationStore";
+import { useTranslation } from "react-i18next";
 
 export const useAddGoal = () => {
+  const { t } = useTranslation("query");
   const queryClient = useQueryClient();
   const { token } = useAuth();
+
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
+
   const queryKeyHandler =
     token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
@@ -42,7 +50,11 @@ export const useAddGoal = () => {
           context.previousGoals
         );
       }
+      addNotification("error", t("goal_add_error"));
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("goal_add_success"));
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyHandler });
@@ -53,6 +65,12 @@ export const useAddGoal = () => {
 export const useUpdateGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const { t } = useTranslation("query");
+
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
+
   const queryKeyHandler =
     token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
@@ -90,7 +108,12 @@ export const useUpdateGoal = () => {
       if (context?.previousGoals) {
         queryClient.setQueryData(queryKeyHandler, context.previousGoals);
       }
+      addNotification("error", t("goal_updated_error"));
+
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("goal_updated_success"));
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyHandler });
@@ -101,6 +124,10 @@ export const useUpdateGoal = () => {
 export const useDeleteGoal = () => {
   const queryClient = useQueryClient();
   const { token } = useAuth();
+  const { t } = useTranslation("query");
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
   const queryKeyHandler =
     token && navigator.onLine ? ["goals", "server"] : ["goals", "local"];
 
@@ -127,7 +154,11 @@ export const useDeleteGoal = () => {
       if (context?.previousGoals) {
         queryClient.setQueryData(queryKeyHandler, context.previousGoals);
       }
+      addNotification("error", t("goal_delete_error"));
       console.error(error);
+    },
+    onSuccess: () => {
+      addNotification("success", t("goal_delete_success"));
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyHandler });

@@ -1,0 +1,14 @@
+{
+  "budget_add_success": "Budget limit updated successfully",
+  "budget_error": "Budget limit could not be updated or added",
+  "goal_add_success": "Goal added successfully",
+  "goal_add_error": "Goal could not be added",
+  "goal_updated_success": "Goal updated successfully",
+  "goal_updated_error": "Goal failed to update",
+  "goal_delete_success": "Goal deleted successfully",
+  "goal_delete_error": "Goal failed to delete",
+  "transaction_add_success": "Transaction added successfully",
+  "transaction_add_error": "Transaction could not be updated or added",
+  "transaction_delete_success": "Transaction deleted successfully",
+  "transaction_delete_error": "Transaction failed to delete"
+}
