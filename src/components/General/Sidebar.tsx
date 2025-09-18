@@ -21,9 +21,8 @@ const Sidebar: React.FC = () => {
   const { t } = useTranslation("dashboard");
   const location = useLocation();
 
-  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
-
   const toggleSidebar = () => setIsOpen(!isOpen);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   return (
     <div>
@@ -131,6 +130,7 @@ const Sidebar: React.FC = () => {
                     label={t("sidebar_panel_1")}
                     isOpen={true}
                     active={location.pathname === "/"}
+                    onClick={toggleSidebar}
                   />
                   <SidebarLink
                     to="/transactions"
@@ -138,6 +138,7 @@ const Sidebar: React.FC = () => {
                     label={t("sidebar_panel_2")}
                     isOpen={true}
                     active={location.pathname === "/transactions"}
+                    onClick={toggleSidebar}
                   />
                   <SidebarLink
                     to="/budget"
@@ -145,6 +146,7 @@ const Sidebar: React.FC = () => {
                     label={t("sidebar_panel_3")}
                     isOpen={true}
                     active={location.pathname === "/budget"}
+                    onClick={toggleSidebar}
                   />
                   <SidebarLink
                     to="/analytics"
@@ -152,6 +154,7 @@ const Sidebar: React.FC = () => {
                     label={t("sidebar_panel_4")}
                     isOpen={true}
                     active={location.pathname === "/analytics"}
+                    onClick={toggleSidebar}
                   />
                   <SidebarLink
                     to="/goals"
@@ -159,6 +162,7 @@ const Sidebar: React.FC = () => {
                     label={t("sidebar_panel_5")}
                     isOpen={true}
                     active={location.pathname === "/goals"}
+                    onClick={toggleSidebar}
                   />
                 </nav>
                 <div className="flex flex-col self-center py-4 gap-5">
@@ -182,6 +186,7 @@ interface SidebarLinkProps {
   label: string;
   isOpen: boolean;
   active: boolean;
+  onClick?: () => void;
 }
 
 const SidebarLink: React.FC<SidebarLinkProps> = ({
@@ -190,6 +195,7 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
   label,
   isOpen,
   active,
+  onClick,
 }) => (
   <Link
     to={to}
@@ -198,6 +204,7 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
         ? "bg-primary text-textBaseHoverSidebar"
         : "text-textBase hover:bg-primary hover:text-textBaseHoverSidebar"
     }`}
+    onClick={onClick}
   >
     <Icon className={`w-6 h-6 ${active ? "text-white" : "text-black"}`} />
     {isOpen && <span className="text-sm font-medium">{label}</span>}

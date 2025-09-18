@@ -20,25 +20,23 @@ export const getTransactionsStats = (transactions: Transaction[]) => {
     let totalExpense = 0;
 
     for (const tx of transactions) {
-      const convertedAmount = Number(
+      const cents = Math.round(
         currencyConventor({
           amount: tx.amount,
           fromCurrency: tx.currency,
           toCurrency: selectedCurrency,
           rates,
-        }).toFixed(2)
+        }) * 100
       );
 
-      if (tx.type === "income") {
-        totalIncome += convertedAmount;
-      } else if (tx.type === "expense") {
-        totalExpense += convertedAmount;
-      }
+      if (tx.type === "income") totalIncome += cents;
+      else if (tx.type === "expense") totalExpense += cents;
     }
+
     return {
-      totalIncome,
-      totalExpense,
-      balance: totalIncome - totalExpense,
+      totalIncome: totalIncome / 100,
+      totalExpense: totalExpense / 100,
+      balance: (totalIncome - totalExpense) / 100,
     };
   }, [transactions, selectedCurrency, rates]);
 

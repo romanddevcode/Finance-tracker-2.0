@@ -13,7 +13,7 @@ export const ExpensePanel: React.FC = () => {
     <div className="bg-secondary  md:w-full text-center lg:text-left  md:text-2xl  text-xl text-textBase p-4 rounded-lg shadow">
       <h3 className=" font-bold mb-2">{t("expense_panel")}</h3>
       <p className="font-medium">
-        {totalExpense.toFixed(2)} {selectedCurrency}
+        {totalExpense} {selectedCurrency}
       </p>
     </div>
   );

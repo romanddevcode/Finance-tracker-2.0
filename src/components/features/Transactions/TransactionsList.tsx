@@ -42,8 +42,7 @@ export const TransactionsList: React.FC = () => {
 
       <div className="flex flex-col md:flex-row md:justify-between mb-4">
         <p className="font-semibold">
-          {tTransactions("current_balance")} {balance.toFixed(2)}{" "}
-          {selectedCurrency}
+          {tTransactions("current_balance")} {balance} {selectedCurrency}
         </p>
         <p className="font-semibold">
           {tTransactions("select_currency")}
