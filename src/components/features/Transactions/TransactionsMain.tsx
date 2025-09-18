@@ -55,7 +55,6 @@ export const TransactionsMain: React.FC = () => {
     try {
       await addTransactionMutation.mutateAsync(newTransaction);
       reset({
-        amount: 0,
         date: new Date().toISOString().slice(0, 10),
         description: "",
       });
@@ -89,7 +88,8 @@ export const TransactionsMain: React.FC = () => {
                 <input
                   {...register("amount", { valueAsNumber: true })}
                   type="number"
-                  min={1}
+                  step="0.01"
+                  min={0}
                   className="w-full  rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-2"
                   placeholder={t("summ_placeholder")}
                   required

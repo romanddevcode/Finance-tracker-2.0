@@ -37,14 +37,14 @@ export const useAnalyticsData = (
       const date = tx.date;
       acc.allDates.add(date);
 
-      const convertedAmount = Number(
-        currencyConventor({
-          amount: tx.amount,
-          fromCurrency: tx.currency,
-          toCurrency: selectedCurrency,
-          rates,
-        }).toFixed(2)
-      );
+      const rawAmount = currencyConventor({
+        amount: tx.amount,
+        fromCurrency: tx.currency,
+        toCurrency: selectedCurrency,
+        rates,
+      });
+
+      const convertedAmount = Math.round(rawAmount * 100) / 100;
 
       if (tx.type === "income") {
         acc.incomeByDate[date] =
@@ -75,7 +75,7 @@ export const useAnalyticsData = (
       allDates,
       allCategories,
     };
-  }, [transactions, period]);
+  }, [transactions, period, selectedCurrency, rates]);
 
   return result;
 };

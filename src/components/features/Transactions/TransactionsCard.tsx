@@ -36,8 +36,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = React.memo(
                 tx.type === "income" ? "text-income" : "text-expense"
               }`}
             >
-              {tx.type === "income" ? "+" : "-"} {tx.amount.toFixed(2)}{" "}
-              {tx.currency}
+              {tx.type === "income" ? "+" : "-"} {tx.amount} {tx.currency}
             </span>
           </div>
 
@@ -65,7 +64,6 @@ export const TransactionCard: React.FC<TransactionCardProps> = React.memo(
           </div>
         </div>
 
-        {/* Десктопная версия */}
         <div className="hidden sm:grid grid-cols-6 gap-x-4 p-3 border rounded-md shadow-sm text-base items-center">
           <span
             className={`font-semibold ${
@@ -82,8 +80,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = React.memo(
               tx.type === "income" ? "text-income" : "text-expense"
             }`}
           >
-            {tx.type === "income" ? "+" : "-"} {tx.amount.toFixed(2)}{" "}
-            {tx.currency}
+            {tx.type === "income" ? "+" : "-"} {tx.amount} {tx.currency}
           </span>
 
           <span>{tAnalytics(`categories.${tx.category}`)}</span>
