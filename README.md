@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# 💰 Finance Tracker 2.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Finance Tracker 2.0** is a **PWA application** for managing personal finances.
+It’s built as a fullstack project: **React + TypeScript (frontend)** and **Express + MongoDB (backend)**.
+The app supports offline mode, JWT authentication, and provides clean financial analytics with interactive charts.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [View on Vercel](https://finance-tracker-2-0-nu.vercel.app/)
+📂 **Backend Repo**: (https://github.com/romanddevcode/finance-backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* 🔐 User authentication & registration (JWT + middleware)
+* 📊 Dashboard with income & expense overview
+* 💸 Transaction management (create, view, delete)
+* 🎯 Financial goals (add, update, track progress)
+* 🏦 Budget setting & limit tracking
+* 📉 Analytics with interactive charts (Chart.js)
+* 📱 Responsive UI (Desktop + Mobile)
+* 📡 Data synchronization with backend + offline mode (IndexedDB via Dexie.js)
+* 🧩 Minimalistic UI with TailwindCSS
+* 🌐 Multi-language support like de, ua, en languages (i18n)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Frontend
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+* [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+* [Vite](https://vitejs.dev/)
+* [Zustand](https://zustand-demo.pmnd.rs/) — state management
+* [Dexie.js](https://dexie.org/) — offline mode (IndexedDB)
+* [TailwindCSS](https://tailwindcss.com/) — styling
+* [Chart.js](https://www.chartjs.org/) — charts & analytics
+* [react-i18next](https://react.i18next.com/) — multi-language support
+
+### Backend
+
+* [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/)
+* JWT authentication with middleware
+* REST API for transactions, goals & budget
+
+### Testing
+
+* [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)
+
+---
+
+## 📸 Screenshots
+![dashboard](src/assets/2an0KaX-Imgur.png)
+![goals](src/assets/YyQzohj-Imgur.png)
+![analytics](src/assets/JZ2DFmm-Imgur.png)
+
+## 🚀 Installation & Setup
+
+### Frontend
+
+```bash
+git clone https://github.com/romanddevcode/Finance-tracker-2.0.git
+cd Finance-tracker-2.0
+npm install
+npm run dev
 ```
