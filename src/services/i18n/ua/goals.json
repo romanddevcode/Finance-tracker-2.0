@@ -3,5 +3,11 @@
   "new_goal": "Додати нову ціль",
   "goal_name": "Назва",
   "goal_amount": "Сумма",
-  "add_new_goal": "Додати ціль"
+  "add_new_goal": "Додати ціль",
+  "goal_completed": "Виконано",
+  "progress": "Прогрес: ",
+  "add_progress": "Додати прогрес",
+  "delete_goal": "Видалити",
+  "current_progress": "Досягнуто",
+  "current_goal": "Ціль"
 }
