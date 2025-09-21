@@ -4,6 +4,7 @@
   "goal_name": "Name",
   "goal_amount": "Amount",
   "add_new_goal": "Add goal",
+  "goal_completed": "Completed",
   "progress": "Progress: ",
   "add_progress": "Add progress",
   "delete_goal": "Delete",

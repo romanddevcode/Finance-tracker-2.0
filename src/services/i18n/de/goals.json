@@ -3,5 +3,11 @@
   "new_goal": "Ziel hinzufügen",
   "goal_name": "Name",
   "goal_amount": "Betrag",
-  "add_new_goal": "Ziel hinzufügen"
+  "add_new_goal": "Ziel hinzufügen",
+  "goal_completed": "Abgeschlossen",
+  "progress": "Fortschritt: ",
+  "add_progress": "Fortschritt hinzufügen",
+  "delete_goal": "Löschen",
+  "current_progress": "Erreicht",
+  "current_goal": "Ziel"
 }
